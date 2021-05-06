@@ -39,11 +39,17 @@ class DBUtil() {
         return result
     }
 
-    fun getUserById(email: String): User {
+    fun getUserById(email: String): User? {
         val realm: Realm = Realm.getDefaultInstance()
         realm.beginTransaction()
-        val user: User = realm.where(User::class.java).equalTo("email", email).findFirst()
-        val result: User = realm.copyFromRealm(user)
+
+        val saved = realm.where(User::class.java).equalTo("email", email).findFirst()
+        var result: User? = null
+
+        if (saved != null) {
+            result = realm.copyFromRealm(saved)
+        }
+
         realm.commitTransaction()
         return result
     }

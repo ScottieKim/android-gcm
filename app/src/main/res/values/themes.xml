@@ -16,4 +16,9 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="ContentStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/textsize_13</item>
+        <item name="android:textColor">@color/darkgrey</item>
+    </style>
 </resources>

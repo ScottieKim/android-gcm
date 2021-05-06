@@ -20,6 +20,21 @@
     <string name="main_new_title">New gym community</string>
     <string name="main_recom_title">Recommended gym community</string>
 
+    <!-- Like -->
+    <string name="like_title">Like</string>
+    <string name="like_empty">Empty List</string>
+
+    <!-- Profile -->
+    <string name="profile_title">Profile</string>
+    <string name="profile_personal_title">PERSONAL</string>
+    <string name="profile_personal_info">Personal info</string>
+    <string name="profile_logout">Logout</string>
+
+
+
+
+
+
 
 
 
