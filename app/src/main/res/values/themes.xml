@@ -10,4 +10,10 @@
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
     </style>
+
+    <style name="TitleStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/textsize_18</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

@@ -11,7 +11,8 @@ class DBUtil() {
         realm.beginTransaction()
 
         // 충돌방지
-        val savedUser: User? = realm.where(User::class.java).equalTo("email", user?.email).findFirst()
+        val savedUser: User? =
+            realm.where(User::class.java).equalTo("email", user?.email).findFirst()
         if (savedUser == null) {
             realm.insert(user)
         }
@@ -29,7 +30,7 @@ class DBUtil() {
             return result
         }
 
-    fun getallUsers(): List<User>{
+    fun getallUsers(): List<User> {
         val realm: Realm = Realm.getDefaultInstance()
         realm.beginTransaction()
         val list: List<User> = realm.where(User::class.java).findAll()
@@ -38,7 +39,7 @@ class DBUtil() {
         return result
     }
 
-    fun getUserById(email: String?): User {
+    fun getUserById(email: String): User {
         val realm: Realm = Realm.getDefaultInstance()
         realm.beginTransaction()
         val user: User = realm.where(User::class.java).equalTo("email", email).findFirst()
@@ -47,7 +48,7 @@ class DBUtil() {
         return result
     }
 
-    fun deleteUserById(email: String?) {
+    fun deleteUserById(email: String) {
         val realm: Realm = Realm.getDefaultInstance()
         realm.beginTransaction()
         realm.where(User::class.java).equalTo("email", email).findFirst().deleteFromRealm()
@@ -68,4 +69,29 @@ class DBUtil() {
         user.password = "updatedPwd"
         realm.commitTransaction()
     }
+
+    //
+    fun insertCommunity(community: Community) {
+        val realm: Realm = Realm.getDefaultInstance()
+        realm.beginTransaction()
+
+        // 충돌방지
+        val saved =
+            realm.where(Community::class.java).equalTo("title", community.title).findFirst()
+        if (saved == null) {
+            realm.insert(community)
+        }
+
+        realm.commitTransaction()
+    }
+
+    fun getAllCommunity(): List<Community> {
+        val realm: Realm = Realm.getDefaultInstance()
+        realm.beginTransaction()
+        val list = realm.where(Community::class.java).findAll()
+        val result = realm.copyFromRealm(list)
+        realm.commitTransaction()
+        return result
+    }
+
 }

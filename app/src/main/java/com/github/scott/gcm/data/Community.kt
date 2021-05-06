@@ -3,7 +3,7 @@ package com.github.scott.gcm.data
 import io.realm.RealmObject
 
 open class Community : RealmObject() {
-    var name = ""
+    var title = ""
 
     var type = ""
 

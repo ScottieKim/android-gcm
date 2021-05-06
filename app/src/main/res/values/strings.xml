@@ -1,15 +1,26 @@
 <resources>
     <string name="app_name">My Application</string>
+
+    <!-- Sign up-->
+    <string name="signup_title">Sign up</string>
     <string name="signup_email_title">Email</string>
     <string name="signup_email_hint">whatever@mail.com</string>
     <string name="signup_password_title">Password</string>
     <string name="signup_password_hint">6+ character</string>
     <string name="signup_name_title">Name</string>
     <string name="signup_name_hint">Input name</string>
+
+    <!-- Login -->
     <string name="login_email_title">Email</string>
     <string name="login_email_hint">whatever@mail.com</string>
     <string name="login_password_title">Password</string>
     <string name="login_password_hint">6+ character</string>
-    <string name="Sign_up_title">Sign up</string>
+
+    <!-- Main -->
+    <string name="main_new_title">New gym community</string>
+    <string name="main_recom_title">Recommended gym community</string>
+
+
+
 
 </resources>

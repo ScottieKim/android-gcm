@@ -7,37 +7,15 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView8"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Gym Community" />
+        android:layout_weight="1"
+        android:layout_height="0dp"/>
 
-    <EditText
-        android:id="@+id/editTextTextPersonName6"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Gym Community is an application for exercise lovers who want to workout with any groups.Anyone who wants to exercise can find a sports club around and join the group they want.
-You can join wherever you want to join!" />
+        android:layout_height="50dp" />
 
-    <Button
-        android:id="@+id/button_list"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="400dp"
-        android:layout_marginLeft="150dp"
-        android:layout_height="wrap_content"
-        android:text="List로 이동하기" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:layout_marginLeft="80dp"
-        android:text="Haven’t signed up yet? Sign up" />
 </LinearLayout>
