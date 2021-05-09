@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
+
         <variable
             name="viewModel"
             type="com.github.scott.gcm.data.viewmodel.CreateViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,8 +21,8 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_margin="20dp"
-            android:onClick="@{()->viewModel.onClickBack()}"
             android:background="@android:color/transparent"
+            android:onClick="@{()->viewModel.onClickBack()}"
             android:scaleType="fitCenter"
             android:src="@drawable/back_icon"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -31,135 +34,157 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-
             android:text="@string/create_title"
             app:layout_constraintBottom_toBottomOf="@+id/button_create_back"
             app:layout_constraintLeft_toRightOf="@+id/button_create_back"
             app:layout_constraintTop_toTopOf="@+id/button_create_back" />
 
-        <!--    <ScrollView-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:layout_height="0dp"-->
-        <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--        app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--        app:layout_constraintRight_toRightOf="parent"-->
-        <!--        app:layout_constraintTop_toBottomOf="@+id/textview_create_title">-->
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_create_title">
+            app:layout_constraintTop_toBottomOf="@+id/button_create_back">
 
-            <FrameLayout
-                android:id="@+id/framelayout_create_photo"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
-                android:onClick="@{()->viewModel.onClickPhoto()}"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/button_grey"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/imageview_create_photohint"
-                    android:layout_width="100dp"
-                    android:scaleType="fitCenter"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/photo_icon" />
-
-                <ImageView
-                    android:id="@+id/imageview_create_photo"
-                    android:layout_width="match_parent"
-                    android:scaleType="fitXY"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center" />
-            </FrameLayout>
-
-
-            <TextView
-                android:id="@+id/textview_create_communitytitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/create_community_title"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/framelayout_create_photo" />
-
-            <EditText
-                android:id="@+id/edittext_create_communitytitle"
-                style="@style/EditTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:text="@={viewModel.title}"
-                android:hint="@string/create_community_title_hint"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textview_create_communitytitle" />
-
-            <TextView
-                android:id="@+id/textview_create_communitytype"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/create_community_type"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edittext_create_communitytitle" />
-
-            <EditText
-                android:id="@+id/edittext_create_communitytype"
-                style="@style/EditTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:text="@={viewModel.type}"
-                android:hint="@string/create_community_type_hint"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textview_create_communitytype" />
-
-            <TextView
-                android:id="@+id/textview_create_communitylocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/create_community_location"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edittext_create_communitytype" />
-
-            <EditText
-                android:id="@+id/edittext_create_communitylocation"
-                style="@style/EditTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:text="@={viewModel.location}"
-                android:hint="@string/create_community_location_hint"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textview_create_communitylocation" />
-
-            <Button
-                android:id="@+id/button_create_submit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/button_blue"
-                android:text="@string/create_community_button"
-                android:textColor="@color/white"
-                android:onClick="@{()->viewModel.onClickCreate()}"
+                android:layout_height="0dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edittext_create_communitylocation"
-                app:layout_constraintVertical_bias="1" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <!--    </ScrollView>-->
+                app:layout_constraintTop_toBottomOf="@+id/textview_create_title">
+
+                <FrameLayout
+                    android:id="@+id/framelayout_create_photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:background="@drawable/button_grey"
+                    android:onClick="@{()->viewModel.onClickPhoto()}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/imageview_create_photohint"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/photo_icon" />
+
+                    <ImageView
+                        android:id="@+id/imageview_create_photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:scaleType="fitXY" />
+                </FrameLayout>
+
+
+                <TextView
+                    android:id="@+id/textview_create_communitytitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/create_community_title"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/framelayout_create_photo" />
+
+                <EditText
+                    android:id="@+id/edittext_create_communitytitle"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/create_community_title_hint"
+                    android:text="@={viewModel.title}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textview_create_communitytitle" />
+
+                <TextView
+                    android:id="@+id/textview_create_communitytype"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/create_community_type"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edittext_create_communitytitle" />
+
+                <EditText
+                    android:id="@+id/edittext_create_communitytype"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/create_community_type_hint"
+                    android:text="@={viewModel.type}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textview_create_communitytype" />
+
+                <TextView
+                    android:id="@+id/textview_create_communitylocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/create_community_location"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edittext_create_communitytype" />
+
+                <EditText
+                    android:id="@+id/edittext_create_communitylocation"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/create_community_location_hint"
+                    android:text="@={viewModel.location}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textview_create_communitylocation" />
+
+
+                <TextView
+                    android:id="@+id/textview_create_communitydesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/create_community_desc"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edittext_create_communitylocation" />
+
+                <EditText
+                    android:id="@+id/edittext_create_communitydesc"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/create_community_desc_hint"
+                    android:text="@={viewModel.location}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textview_create_communitydesc" />
+
+                <Button
+                    android:id="@+id/button_create_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/button_blue"
+                    android:onClick="@{()->viewModel.onClickCreate()}"
+                    android:text="@string/create_community_button"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edittext_create_communitydesc"
+                    app:layout_constraintVertical_bias="1" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>    

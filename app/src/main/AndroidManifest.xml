@@ -30,6 +30,8 @@
         <activity android:name=".view.activity.SignupAcitivity" />
 
         <activity android:name=".view.activity.CreateActivity" />
+
+        <activity android:name=".view.activity.DetailActivity" />
     </application>
 
 </manifest>

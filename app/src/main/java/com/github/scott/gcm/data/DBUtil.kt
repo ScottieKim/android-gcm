@@ -26,7 +26,8 @@ class DBUtil() {
             val realm: Realm = Realm.getDefaultInstance()
             realm.beginTransaction()
             val list: List<User> = realm.where(
-                User::class.java).findAll()
+                User::class.java
+            ).findAll()
             val result: List<User> = realm.copyFromRealm(list)
             realm.commitTransaction()
             return result
@@ -36,7 +37,8 @@ class DBUtil() {
         val realm: Realm = Realm.getDefaultInstance()
         realm.beginTransaction()
         val list: List<User> = realm.where(
-            User::class.java).findAll()
+            User::class.java
+        ).findAll()
         val result: List<User> = realm.copyFromRealm(list)
         realm.commitTransaction()
         return result
@@ -75,7 +77,8 @@ class DBUtil() {
         val realm: Realm = Realm.getDefaultInstance()
         realm.beginTransaction()
         val user: User = realm.where(
-            User::class.java).equalTo("email", email).findFirst()
+            User::class.java
+        ).equalTo("email", email).findFirst()
         user.password = "updatedPwd"
         realm.commitTransaction()
     }
@@ -103,5 +106,15 @@ class DBUtil() {
         realm.commitTransaction()
         return result
     }
+
+    fun getCommunityByTitle(title: String): Community {
+        val realm: Realm = Realm.getDefaultInstance()
+        realm.beginTransaction()
+        val list = realm.where(Community::class.java).equalTo("title", title).findFirst()
+        val result = realm.copyFromRealm(list)
+        realm.commitTransaction()
+        return result
+    }
+
 
 }

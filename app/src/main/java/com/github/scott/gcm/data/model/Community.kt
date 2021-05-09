@@ -12,4 +12,6 @@ open class Community : RealmObject() {
     var description = ""
 
     var img = ""
+
+    var ownerEmail = ""
 }

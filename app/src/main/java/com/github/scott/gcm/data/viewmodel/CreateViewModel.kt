@@ -3,6 +3,7 @@ package com.github.scott.gcm.data.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.github.scott.gcm.CommonUtil
 import com.github.scott.gcm.data.DBUtil
 import com.github.scott.gcm.data.model.Community
 
@@ -39,5 +40,9 @@ class CreateViewModel : ViewModel() {
 
     fun setCommunityImg(img: String) {
         community.img = img
+    }
+
+    fun setCommunityOwner(email: String) {
+        community.ownerEmail = email
     }
 }

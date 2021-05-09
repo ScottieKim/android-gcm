@@ -36,10 +36,12 @@
     <string name="create_community_title">Title</string>
     <string name="create_community_type">Type of Sports</string>
     <string name="create_community_location">Location</string>
+    <string name="create_community_desc">Description</string>
 
     <string name="create_community_title_hint">Input Title</string>
     <string name="create_community_type_hint">Select Type</string>
-    <string name="create_community_location_hint">input Location</string>
+    <string name="create_community_location_hint">Input Location</string>
+    <string name="create_community_desc_hint">Input Description</string>
 
 
 </resources>
