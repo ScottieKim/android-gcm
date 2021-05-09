@@ -1,4 +1,6 @@
-package com.github.scott.gcm
+package com.github.scott.gcm.view.activity
+
+import com.github.scott.gcm.R
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

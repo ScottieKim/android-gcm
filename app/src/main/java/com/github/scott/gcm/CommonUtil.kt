@@ -6,6 +6,7 @@ import android.content.Context
 object CommonUtil {
     val SP_USER = "user"
     val EMAIL = "email"
+
     fun savedUser(activity: Activity, email: String) {
         val sharedPref = activity.getSharedPreferences(SP_USER, Context.MODE_PRIVATE)
         val editor = sharedPref.edit()

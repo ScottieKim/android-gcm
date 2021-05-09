@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
 
-        <activity android:name=".LoginActivity">
+        <activity android:name=".view.activity.LoginActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,12 +21,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".view.activity.MainActivity"/>
 
-        <activity android:name=".ListActivity"/>
+        <activity android:name=".view.activity.ListActivity"/>
 
-        <activity android:name=".SignupAcitivity"/>
+        <activity android:name=".view.activity.SignupAcitivity"/>
 
+        <activity android:name=".view.activity.CreateActivity"/>
     </application>
 
 </manifest>

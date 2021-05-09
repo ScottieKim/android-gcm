@@ -1,4 +1,4 @@
-package com.github.scott.gcm.data
+package com.github.scott.gcm.data.model
 
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey

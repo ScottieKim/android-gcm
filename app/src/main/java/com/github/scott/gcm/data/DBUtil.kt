@@ -1,6 +1,7 @@
 package com.github.scott.gcm.data
 
-import android.content.Context
+import com.github.scott.gcm.data.model.Community
+import com.github.scott.gcm.data.model.User
 import io.realm.Realm
 
 
@@ -24,7 +25,8 @@ class DBUtil() {
         get() {
             val realm: Realm = Realm.getDefaultInstance()
             realm.beginTransaction()
-            val list: List<User> = realm.where(User::class.java).findAll()
+            val list: List<User> = realm.where(
+                User::class.java).findAll()
             val result: List<User> = realm.copyFromRealm(list)
             realm.commitTransaction()
             return result
@@ -33,7 +35,8 @@ class DBUtil() {
     fun getallUsers(): List<User> {
         val realm: Realm = Realm.getDefaultInstance()
         realm.beginTransaction()
-        val list: List<User> = realm.where(User::class.java).findAll()
+        val list: List<User> = realm.where(
+            User::class.java).findAll()
         val result: List<User> = realm.copyFromRealm(list)
         realm.commitTransaction()
         return result
@@ -71,7 +74,8 @@ class DBUtil() {
     fun updateByUserId(email: String?) {
         val realm: Realm = Realm.getDefaultInstance()
         realm.beginTransaction()
-        val user: User = realm.where(User::class.java).equalTo("email", email).findFirst()
+        val user: User = realm.where(
+            User::class.java).equalTo("email", email).findFirst()
         user.password = "updatedPwd"
         realm.commitTransaction()
     }

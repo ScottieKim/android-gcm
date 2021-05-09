@@ -1,11 +1,12 @@
-package com.github.scott.gcm
+package com.github.scott.gcm.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.github.scott.gcm.data.Community
+import com.github.scott.gcm.R
+import com.github.scott.gcm.data.model.Community
 import kotlinx.android.synthetic.main.item_community.view.*
 
 class CommunityListAdapter(var list: List<Community>) :

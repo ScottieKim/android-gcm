@@ -1,4 +1,4 @@
-package com.github.scott.gcm
+package com.github.scott.gcm.view.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
