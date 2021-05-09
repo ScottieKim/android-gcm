@@ -21,4 +21,12 @@
         <item name="android:textSize">@dimen/textsize_13</item>
         <item name="android:textColor">@color/darkgrey</item>
     </style>
+
+    <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/selector_edittext</item>
+        <item name="android:ems">10</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:textSize">@dimen/textsize_13</item>
+    </style>
+
 </resources>

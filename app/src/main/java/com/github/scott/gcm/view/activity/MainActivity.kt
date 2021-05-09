@@ -24,32 +24,34 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
+    private lateinit var mainFragment: MainFragment
+    private val CREATE_COMMUNITY = 10002
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-//        viewModel.text = "text111"
 
         viewModel.moveCreate.observe(this, Observer {
             val intent = Intent(this, CreateActivity::class.java)
-            startActivity(intent)
+            startActivityForResult(intent, CREATE_COMMUNITY)
         })
 
         binding.viewModel = viewModel
 
         initPager()
-
     }
 
     private fun initPager() {
+        mainFragment = MainFragment()
+
+
         viewpager_main.adapter =
             MainPagerAdapter(
                 supportFragmentManager,
                 listOf(
-                    MainFragment(),
+                    mainFragment,
                     LikeFragment(),
                     ProfileFragment()
                 )
@@ -83,4 +85,10 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == CREATE_COMMUNITY) {
+            mainFragment.refreshList()
+        }
+    }
 }

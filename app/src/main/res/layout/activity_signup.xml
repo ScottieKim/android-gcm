@@ -3,9 +3,9 @@
 
     <data>
 
-            <variable
-                name="viewModel"
-                type="com.github.scott.gcm.data.viewmodel.LoginViewModel" />
+        <variable
+            name="viewModel"
+            type="com.github.scott.gcm.data.viewmodel.LoginViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -62,10 +62,10 @@
                 android:id="@+id/edittext_signup_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@={viewModel.email}"
                 android:ems="10"
                 android:hint="@string/signup_email_hint"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:text="@={viewModel.email}" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -78,10 +78,10 @@
                 android:id="@+id/edittext_signup_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@={viewModel.password}"
                 android:ems="10"
                 android:hint="@string/signup_password_hint"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:text="@={viewModel.password}" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -94,10 +94,10 @@
                 android:id="@+id/edittext_signup_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@={viewModel.name}"
                 android:ems="10"
                 android:hint="@string/signup_name_hint"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:text="@={viewModel.name}" />
 
             <Button
                 android:id="@+id/button_signup_submit"
@@ -105,8 +105,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/button_blue"
-                android:text="Sign up"
                 android:onClick="@{()->viewModel.onClickSignup()}"
+                android:text="Sign up"
                 android:textColor="@color/white" />
         </LinearLayout>
 

@@ -2,13 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.github.scott.gcm">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".SubApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".SubApplication"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
@@ -21,13 +23,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.activity.MainActivity"/>
+        <activity android:name=".view.activity.MainActivity" />
 
-        <activity android:name=".view.activity.ListActivity"/>
+        <activity android:name=".view.activity.ListActivity" />
 
-        <activity android:name=".view.activity.SignupAcitivity"/>
+        <activity android:name=".view.activity.SignupAcitivity" />
 
-        <activity android:name=".view.activity.CreateActivity"/>
+        <activity android:name=".view.activity.CreateActivity" />
     </application>
 
 </manifest>

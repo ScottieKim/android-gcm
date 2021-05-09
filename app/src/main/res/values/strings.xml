@@ -30,12 +30,16 @@
     <string name="profile_personal_info">Personal info</string>
     <string name="profile_logout">Logout</string>
 
+    <!-- Create -->
+    <string name="create_title">Create new community</string>
+    <string name="create_community_button">Create</string>
+    <string name="create_community_title">Title</string>
+    <string name="create_community_type">Type of Sports</string>
+    <string name="create_community_location">Location</string>
 
-
-
-
-
-
+    <string name="create_community_title_hint">Input Title</string>
+    <string name="create_community_type_hint">Select Type</string>
+    <string name="create_community_location_hint">input Location</string>
 
 
 </resources>

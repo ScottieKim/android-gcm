@@ -1,45 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="20dp">
+<layout>
 
-    <ImageView
-        android:id="@+id/imageview_community_profile"
-        android:layout_width="200dp"
-        android:layout_height="150dp"
-        android:scaleType="fitCenter"
-        android:src="@color/purple_700"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <TextView
-        android:id="@+id/textview_community_title"
-        style="@style/TitleStyle"
+        <variable
+            name="community"
+            type="com.github.scott.gcm.data.model.Community" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="4dp"
-        android:text="title"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageview_community_profile" />
+        android:layout_marginLeft="20dp">
 
-    <TextView
-        android:id="@+id/textview_community_desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="6dp"
-        android:text="desc"
-        android:textSize="@dimen/textsize_12"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_community_title" />
+        <ImageView
+            android:id="@+id/imageview_community_profile"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            android:src="@color/purple_700"
+            app:imgUrl="@{community.img}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/textview_community_title"
+            style="@style/TitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="4dp"
+            android:text="@{community.title}"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageview_community_profile" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textview_community_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="6dp"
+            android:text="@{community.type}"
+            android:textSize="@dimen/textsize_12"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_community_title" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

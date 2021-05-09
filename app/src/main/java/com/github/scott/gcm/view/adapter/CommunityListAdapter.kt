@@ -3,19 +3,27 @@ package com.github.scott.gcm.view.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.github.scott.gcm.R
 import com.github.scott.gcm.data.model.Community
+import com.github.scott.gcm.databinding.ItemCommunityBinding
 import kotlinx.android.synthetic.main.item_community.view.*
 
 class CommunityListAdapter(var list: List<Community>) :
     RecyclerView.Adapter<CommunityListAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_community, parent, false)
-        return Holder(view)
+        val binding = DataBindingUtil.inflate<ItemCommunityBinding>(
+            LayoutInflater.from(parent.context),
+            R.layout.item_community,
+            parent,
+            false
+        )
+        return Holder(binding)
     }
 
     override fun getItemCount(): Int = list.size
@@ -24,12 +32,25 @@ class CommunityListAdapter(var list: List<Community>) :
         holder.bind(list[position])
     }
 
-    inner class Holder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class Holder(var binding: ItemCommunityBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Community) {
-            itemView.textview_community_title.text = item.title
-            itemView.textview_community_desc.text = item.description
+            binding.community = item
 
-            Glide.with(itemView.context).load(item.img).into(itemView.imageview_community_profile)
+
+        }
+    }
+
+    fun setNewList(list: List<Community>) {
+        this.list = list
+        notifyDataSetChanged()
+    }
+
+
+    companion object {
+        @JvmStatic
+        @BindingAdapter("app:imgUrl")
+        fun setImageUrl(view: ImageView, url: String) {
+            Glide.with(view.context).load(url).into(view)
         }
     }
 }
