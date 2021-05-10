@@ -1,93 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="community"
-            type="com.github.scott.gcm.data.model.Community" />
+            type="com.github.scott.gcm.data.viewmodel.DetailViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/button_detail_back"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_margin="20dp"
-            android:background="@android:color/transparent"
-
-            android:scaleType="fitCenter"
-            android:src="@drawable/back_icon"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageview_detail_photo"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_marginTop="15dp"
-            android:src="@color/grey"
-            app:imgUrl="@{community.img}"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_detail_back" />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textview_detail_title"
-            style="@style/TitleStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{community.title}"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageview_detail_photo" />
+            <ImageButton
+                android:id="@+id/button_detail_back"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="20dp"
+                android:background="@android:color/transparent"
 
-        <TextView
-            android:id="@+id/textview_detail_type"
-            style="@style/ContentStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{community.type}"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_detail_title" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/back_icon"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <RatingBar
-            android:id="@+id/ratingbar_detail_review"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            app:layout_constraintHorizontal_bias="1"
-            app:layout_constraintRight_toLeftOf="@+id/textview_detail_reviewcount"
-            app:layout_constraintTop_toBottomOf="@+id/imageview_detail_photo" />
+            <ImageView
+                android:id="@+id/imageview_detail_photo"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="15dp"
+                android:src="@color/grey"
+                app:imgUrl="@{community.img}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button_detail_back" />
 
-        <TextView
-            android:id="@+id/textview_detail_reviewcount"
-            style="@style/ContentStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="4.5(980)"
-            app:layout_constraintBottom_toBottomOf="@+id/ratingbar_detail_review"
-            app:layout_constraintHorizontal_bias="1"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/ratingbar_detail_review" />
+            <TextView
+                android:id="@+id/textview_detail_title"
+                style="@style/TitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{community.title}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageview_detail_photo" />
 
-        <TextView
-            android:id="@+id/textview_detail_location"
-            style="@style/TitleStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="location"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ratingbar_detail_review" />
+            <TextView
+                android:id="@+id/textview_detail_type"
+                style="@style/ContentStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{community.type}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_detail_title" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@color/grey"
-            app:layout_constraintTop_toBottomOf="@+id/textview_detail_location" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <RatingBar
+                android:id="@+id/ratingbar_detail_review"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintRight_toLeftOf="@+id/textview_detail_reviewcount"
+                app:layout_constraintTop_toBottomOf="@+id/imageview_detail_photo" />
 
+            <TextView
+                android:id="@+id/textview_detail_reviewcount"
+                style="@style/ContentStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4.5(980)"
+                app:layout_constraintBottom_toBottomOf="@+id/ratingbar_detail_review"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ratingbar_detail_review" />
+
+            <TextView
+                android:id="@+id/textview_detail_location"
+                style="@style/TitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="location"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ratingbar_detail_review" />
+
+            <FrameLayout
+                android:id="@+id/frameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/grey"
+                app:layout_constraintTop_toBottomOf="@+id/textview_detail_location" />
+
+            <TextView
+                android:id="@+id/textview_detail_owner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Owner"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Owner's name"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textview_detail_owner" />
+
+            <TextView
+                android:id="@+id/testview_detail_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="description"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@id/editTextTextPersonName"
+                tools:layout_editor_absoluteX="78dp" />
+            <EditText
+                android:id="@+id/editTextTextDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Description"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/testview_detail_desc" />
+
+            <Button
+                android:id="@+id/button_detail_submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button_blue"
+                android:text="Send request to join"
+                android:textColor="@color/white"
+                app:layout_constraintTop_toBottomOf="@id/editTextTextDescription"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

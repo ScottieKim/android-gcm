@@ -5,15 +5,24 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.github.scott.gcm.R
+import androidx.lifecycle.ViewModelProvider
 import com.github.scott.gcm.data.DBUtil
+import com.github.scott.gcm.data.viewmodel.DetailViewModel
 import com.github.scott.gcm.databinding.ActivityDetailBinding
+
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
+    private lateinit var viewModel: DetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail)
+        viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
+
+
+
+
 
         val title = intent.getStringExtra("title")
         if (title.isNullOrBlank()) {
@@ -22,7 +31,6 @@ class DetailActivity : AppCompatActivity() {
         } else {
             val dbUtil = DBUtil()
             val community = dbUtil.getCommunityByTitle(title)
-            binding.community = community
         }
 
     }

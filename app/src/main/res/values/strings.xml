@@ -37,11 +37,25 @@
     <string name="create_community_type">Type of Sports</string>
     <string name="create_community_location">Location</string>
     <string name="create_community_desc">Description</string>
+    <string name="create_community_start">Start date</string>
+    <string name="create_community_end">End date</string>
 
     <string name="create_community_title_hint">Input Title</string>
     <string name="create_community_type_hint">Select Type</string>
     <string name="create_community_location_hint">Input Location</string>
     <string name="create_community_desc_hint">Input Description</string>
+    <string name="create_community_start_hint">Input start date</string>
+    <string name="create_community_end_hint">Input end date</string>
+
+
+    <!-- Detail -->
+    <string name="detail_">Create new community</string>
+
+
+
+
+
+
 
 
 </resources>
