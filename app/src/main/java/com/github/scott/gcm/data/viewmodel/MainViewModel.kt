@@ -61,7 +61,7 @@ class MainViewModel : ViewModel() {
 
     class CalledData : MutableLiveData<Boolean>() {
         fun call() {
-            this.postValue(true)
+            postValue(true)
         }
     }
 }

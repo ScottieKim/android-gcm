@@ -1,93 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
-            name="community"
-            type="com.github.scott.gcm.data.model.Community" />
+            name="viewModel"
+            type="com.github.scott.gcm.data.viewmodel.DetailViewModel" />
+
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/button_detail_back"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_margin="20dp"
-            android:background="@android:color/transparent"
-
-            android:scaleType="fitCenter"
-            android:src="@drawable/back_icon"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageview_detail_photo"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_marginTop="15dp"
-            android:src="@color/grey"
-            app:imgUrl="@{community.img}"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_detail_back" />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textview_detail_title"
-            style="@style/TitleStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{community.title}"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageview_detail_photo" />
+            <ImageButton
+                android:id="@+id/button_detail_back"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="20dp"
+                android:background="@android:color/transparent"
+                android:onClick="@{()->viewModel.onClickBack()}"
+                android:scaleType="fitCenter"
+                android:src="@drawable/back_icon"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textview_detail_type"
-            style="@style/ContentStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{community.type}"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_detail_title" />
+            <ImageView
+                android:id="@+id/imageview_detail_photo"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="15dp"
+                android:scaleType="fitXY"
+                android:src="@color/grey"
+                app:imgUrl="@{viewModel.community.img}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button_detail_back" />
 
-        <RatingBar
-            android:id="@+id/ratingbar_detail_review"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            app:layout_constraintHorizontal_bias="1"
-            app:layout_constraintRight_toLeftOf="@+id/textview_detail_reviewcount"
-            app:layout_constraintTop_toBottomOf="@+id/imageview_detail_photo" />
+            <TextView
+                android:id="@+id/textview_detail_title"
+                style="@style/TitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text='@{viewModel.community.title, default="TITLE"}'
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageview_detail_photo" />
 
-        <TextView
-            android:id="@+id/textview_detail_reviewcount"
-            style="@style/ContentStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="4.5(980)"
-            app:layout_constraintBottom_toBottomOf="@+id/ratingbar_detail_review"
-            app:layout_constraintHorizontal_bias="1"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/ratingbar_detail_review" />
+            <TextView
+                android:id="@+id/textview_detail_type"
+                style="@style/ContentStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="4dp"
+                android:text="@{viewModel.community.type, default=aaa}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_detail_title" />
 
-        <TextView
-            android:id="@+id/textview_detail_location"
-            style="@style/TitleStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="location"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ratingbar_detail_review" />
+            <RatingBar
+                android:id="@+id/ratingbar_detail_review"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintRight_toLeftOf="@+id/textview_detail_reviewcount"
+                app:layout_constraintTop_toBottomOf="@+id/imageview_detail_photo" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@color/grey"
-            app:layout_constraintTop_toBottomOf="@+id/textview_detail_location" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/textview_detail_reviewcount"
+                style="@style/ContentStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4.5(980)"
+                app:layout_constraintBottom_toBottomOf="@+id/ratingbar_detail_review"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ratingbar_detail_review" />
 
+            <TextView
+                android:id="@+id/textview_detail_location"
+                style="@style/TitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_marginTop="40dp"
+                android:text="location"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_detail_type" />
+
+            <fragment
+                android:id="@+id/map_detail_location"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_detail_location" />
+
+            <TextView
+                android:id="@+id/textview_detail_owner"
+                style="@style/TitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_marginTop="12dp"
+                android:text="Owner: "
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/map_detail_location" />
+
+            <TextView
+                android:id="@+id/textview_detail_ownername"
+                style="@style/TitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@{viewModel.community.ownerEmail}"
+                app:layout_constraintBottom_toBottomOf="@+id/textview_detail_owner"
+                app:layout_constraintLeft_toRightOf="@+id/textview_detail_owner"
+                app:layout_constraintTop_toTopOf="@+id/textview_detail_owner" />
+
+            <TextView
+                android:id="@+id/textview_detail_desc"
+                style="@style/TitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_marginTop="12dp"
+                android:text="description"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textview_detail_owner"
+                tools:layout_editor_absoluteX="78dp" />
+
+            <TextView
+                android:id="@+id/textview_detail_desccontent"
+                style="@style/TitleStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_marginTop="6dp"
+                android:text="@{viewModel.community.description}"
+                android:textStyle="normal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textview_detail_desc" />
+
+            <Button
+                android:id="@+id/button_detail_submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button_blue"
+                android:text="Send request to join"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textview_detail_desccontent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>
