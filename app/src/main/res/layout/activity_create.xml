@@ -135,14 +135,17 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edittext_create_communitytype" />
 
-                <EditText
-                    android:id="@+id/edittext_create_communitylocation"
-                    style="@style/EditTextStyle"
+                <TextView
+                    android:id="@+id/textview_create_communitylocationcontent"
+                    style="@style/ContentStyle"
+                    android:background="@drawable/button_grey"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:gravity="start|center_vertical"
+                    android:paddingStart="12dp"
                     android:layout_marginTop="10dp"
+                    android:onClick="@{()->viewModel.onClickLocation()}"
                     android:hint="@string/create_community_location_hint"
-                    android:text="@={viewModel.location}"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textview_create_communitylocation" />
@@ -154,7 +157,7 @@
                     android:layout_marginTop="20dp"
                     android:text="@string/create_community_desc"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edittext_create_communitylocation" />
+                    app:layout_constraintTop_toBottomOf="@+id/textview_create_communitylocationcontent" />
 
                 <EditText
                     android:id="@+id/edittext_create_communitydesc"
@@ -163,7 +166,7 @@
                     android:layout_height="50dp"
                     android:layout_marginTop="10dp"
                     android:hint="@string/create_community_desc_hint"
-                    android:text="@={viewModel.location}"
+                    android:text="@={viewModel.desc}"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textview_create_communitydesc" />

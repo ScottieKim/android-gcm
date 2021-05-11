@@ -13,20 +13,22 @@ class CreateViewModel : ViewModel() {
 
     var title = ""
     var type = ""
-    var location = ""
+    var desc = ""
 
     var moveGallery = MainViewModel.CalledData()
+    var moveMap = MainViewModel.CalledData()
     var close = MainViewModel.CalledData()
     var showToast = MutableLiveData<String>()
 
     fun onClickCreate() {
         community.title = title
         community.type = type
-        community.location = 0f
+        community.description = desc
 
         dbUtil.insertCommunity(community)
         showToast.value = "커뮤니티 생성이 완료되었습니다."
-        Log.e("COMMUNITY", "${community.title}:: ${community.type} :: ${community.img}")
+
+        Log.e("COMMUNITY", "${community.title}:: ${community.type} :: ${community.img} :: ${community.lat} :: ${community.lng}")
         close.call()
     }
 
@@ -44,5 +46,15 @@ class CreateViewModel : ViewModel() {
 
     fun setCommunityOwner(email: String) {
         community.ownerEmail = email
+    }
+
+    fun setCommunityLatLng(lat: Double, lng: Double) {
+        community.lat = lat
+        community.lng = lng
+    }
+
+    fun onClickLocation() {
+        moveMap.call()
+
     }
 }

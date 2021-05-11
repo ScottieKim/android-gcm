@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-kapt'
     id 'realm-android'
     id 'com.google.gms.google-services'
+    id 'com.google.secrets_gradle_plugin' version '0.5'
 }
 
 android {
@@ -65,6 +66,13 @@ dependencies {
     // firebase stroage
     implementation 'com.google.firebase:firebase-storage-ktx'
     implementation 'com.firebaseui:firebase-ui-storage:6.4.0'
+
+    // google map
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
+    implementation "com.google.android.gms:play-services-location:18.0.0"
+
+    // google map search
+    implementation 'com.google.android.libraries.places:places:2.4.0'
 
 
 }

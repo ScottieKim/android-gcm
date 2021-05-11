@@ -25,6 +25,7 @@ class CreateActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCreateBinding
     private lateinit var viewModel: CreateViewModel
     private val PICK_IMAGE = 10001
+    private val PICK_LOCATION = 10002
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +35,10 @@ class CreateActivity : AppCompatActivity() {
         viewModel.moveGallery.observe(this, Observer {
             val intent = Intent(Intent.ACTION_GET_CONTENT).apply { type = "image/*" }
             startActivityForResult(intent, PICK_IMAGE)
+        })
+        viewModel.moveMap.observe(this, Observer {
+            val intent = Intent(this, MapActivity::class.java)
+            startActivityForResult(intent, PICK_LOCATION)
         })
         viewModel.showToast.observe(this, Observer {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
@@ -48,6 +53,14 @@ class CreateActivity : AppCompatActivity() {
         if (requestCode == PICK_IMAGE && resultCode != Activity.RESULT_CANCELED) {
             val uri = data?.data
             upload(uri!!)
+        } else if (requestCode == PICK_LOCATION && resultCode == Activity.RESULT_OK) {
+            val title = data?.getStringExtra("title")
+            val address = data?.getStringExtra("address")
+            val lat = data?.getDoubleExtra("lat", 0.0)
+            val lng = data?.getDoubleExtra("lng", 0.0)
+
+            viewModel.setCommunityLatLng(lat!!, lng!!)
+            binding.textviewCreateCommunitylocationcontent.text = address
         }
     }
 

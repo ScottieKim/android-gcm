@@ -7,7 +7,8 @@ open class Community : RealmObject() {
 
     var type = ""
 
-    var location = 0f
+    var lat = 0.0
+    var lng = 0.0
 
     var description = ""
 
