@@ -18,20 +18,18 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail)
-        viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
 
-
-
-
-
-        val title = intent.getStringExtra("title")
+        val title = intent.getStringExtra("title") ?: ""
         if (title.isNullOrBlank()) {
             Toast.makeText(this, "잘못된 정보입니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show()
             finish()
-        } else {
-            val dbUtil = DBUtil()
-            val community = dbUtil.getCommunityByTitle(title)
         }
+
+
+        viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
+        viewModel.title = title
+
+        binding.viewModel = viewModel
 
     }
 }
