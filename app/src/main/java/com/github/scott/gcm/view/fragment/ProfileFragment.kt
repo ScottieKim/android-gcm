@@ -41,5 +41,7 @@ class ProfileFragment : Fragment() {
         Glide.with(view.context as Activity).load(R.drawable.profile).circleCrop()
             .into(view.imageview_profile)
 
+        binding.viewModel = viewModel
+
     }
 }

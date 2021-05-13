@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.github.scott.gcm.CommonUtil
 import com.github.scott.gcm.R
 import com.github.scott.gcm.data.viewmodel.MainViewModel
 import com.github.scott.gcm.databinding.ActivityMainBinding
@@ -18,7 +19,10 @@ import com.github.scott.gcm.view.adapter.MainPagerAdapter
 import com.github.scott.gcm.view.fragment.LikeFragment
 import com.github.scott.gcm.view.fragment.MainFragment
 import com.github.scott.gcm.view.fragment.ProfileFragment
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -36,6 +40,29 @@ class MainActivity : AppCompatActivity() {
         viewModel.moveCreate.observe(this, Observer {
             val intent = Intent(this, CreateActivity::class.java)
             startActivityForResult(intent, CREATE_COMMUNITY)
+        })
+        viewModel.logout.observe(this, Observer {
+            // 로그아웃
+            CommonUtil.savedUser(this, "")
+
+            val options =
+                GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(
+                    getString(
+                        R.string.default_web_client_id
+                    )
+                ).requestEmail().build()
+            val client = GoogleSignIn.getClient(this, options)
+            client.signOut()
+
+            val firebaseAuth = FirebaseAuth.getInstance()
+            firebaseAuth.signOut()
+
+            // 구글 액세스 권한 해제
+            // client.revokeAccess()
+
+            // 로그아웃 후 로그인 화면으로 이동
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
         })
 
         binding.viewModel = viewModel

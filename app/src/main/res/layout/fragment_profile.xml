@@ -4,6 +4,9 @@
         <variable
             name="user"
             type="com.github.scott.gcm.data.model.User" />
+        <variable
+            name="viewModel"
+            type="com.github.scott.gcm.data.viewmodel.MainViewModel" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -99,7 +102,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
+            android:onClick="@{()->viewModel.onClickLogout()}"
             android:layout_marginRight="20dp"
+            android:id="@+id/linearlayout_profile_logout"
             android:orientation="horizontal">
 
             <TextView

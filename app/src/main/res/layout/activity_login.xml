@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
             name="viewModel"
             type="com.github.scott.gcm.data.viewmodel.LoginViewModel" />
@@ -52,10 +54,10 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/selector_edittext"
                 android:ems="10"
-                android:text="@={viewModel.email}"
                 android:hint="@string/login_email_hint"
                 android:inputType="textPersonName"
-                android:padding="12dp" />
+                android:padding="12dp"
+                android:text="@={viewModel.email}" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -71,10 +73,10 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/selector_edittext"
                 android:ems="10"
-                android:text="@={viewModel.password}"
                 android:hint="@string/login_email_hint"
                 android:inputType="textPassword"
-                android:padding="12dp" />
+                android:padding="12dp"
+                android:text="@={viewModel.password}" />
 
             <Button
                 android:id="@+id/button_login_submit"
@@ -82,8 +84,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/button_blue"
-                android:text="Login"
                 android:onClick="@{()->viewModel.onClickLogin()}"
+                android:text="Login"
                 android:textColor="@color/white" />
 
             <ImageView
@@ -91,7 +93,25 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/googlesignin" />
+                android:src="@drawable/googlesignin"
+                android:visibility="gone" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <com.google.android.gms.common.SignInButton
+                    android:id="@+id/button_login_google"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:id="@+id/view_login_google"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:onClick="@{()->viewModel.onClickSocialLogin()}" />
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/textView6"
@@ -108,6 +128,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/button_grey"
+                android:onClick="@{()->viewModel.onClickJoin()}"
                 android:text="Sign up" />
 
             <TextView

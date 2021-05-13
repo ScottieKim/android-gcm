@@ -14,10 +14,16 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     var moveMain = MutableLiveData<String>()
     var showToast = MutableLiveData<String>()
     var close = MainViewModel.CalledData()
+    var googleLogin = MainViewModel.CalledData()
+    var moveSignup = MainViewModel.CalledData()
 
     var email = ""
     var password = ""
     var name = ""
+
+
+    //숙제
+    fun onClickSocialLogin() = googleLogin.call()
 
     fun onClickLogin() {
         val user: User? = dbUtil.getUserById(email)
@@ -32,7 +38,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun onClickSignup() {
+    fun onClickSignup(isSocial: Boolean = false) {
         val user = User().apply {
             this.email = this@LoginViewModel.email
             this.password = this@LoginViewModel.password
@@ -46,10 +52,34 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         // Log
         val list = dbUtil.getallUsers()
         for (item in list) {
-            Log.e("유저", "name: ${item.name}  email: ${item.email}  password:${item.password}")
+            Log.e("Google 로그인", "name: ${item.name}  email: ${item.email}  password:${item.password}")
         }
 
-        close.call()
+        if(isSocial){
+            // 로그인 완료
+            moveMain.value = email
+        } else {
+            // 회원가입 완료
+            close.call()
+        }
+    }
+
+    fun onClickJoin(){
+        moveSignup.call()
+    }
+
+    // true : 존재
+    // False : x
+    fun isExistUser(email: String): Boolean {
+        val user = dbUtil.getUserById(email)
+//        if(user == null) {
+//            return false
+//        } else {
+//            return true
+//        }
+
+        // return  user == null // true
+        return user != null // false
     }
 
     fun onClickBack() {

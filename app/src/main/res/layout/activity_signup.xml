@@ -105,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/button_blue"
-                android:onClick="@{()->viewModel.onClickSignup()}"
+                android:onClick="@{()->viewModel.onClickSignup(false)}"
                 android:text="Sign up"
                 android:textColor="@color/white" />
         </LinearLayout>

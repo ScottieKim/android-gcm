@@ -63,9 +63,17 @@ dependencies {
     // Firebase
     implementation platform('com.google.firebase:firebase-bom:27.1.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
+
     // firebase stroage
     implementation 'com.google.firebase:firebase-storage-ktx'
     implementation 'com.firebaseui:firebase-ui-storage:6.4.0'
+
+    // Firebase Google Login
+    implementation platform('com.google.firebase:firebase-bom:27.1.0')
+    implementation 'com.firebaseui:firebase-ui-auth:6.4.0'
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+
 
     // google map
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
@@ -73,6 +81,7 @@ dependencies {
 
     // google map search
     implementation 'com.google.android.libraries.places:places:2.4.0'
+
 
 
 }
