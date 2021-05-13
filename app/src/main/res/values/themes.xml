@@ -1,4 +1,3 @@
-
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.MyApplication" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -32,5 +31,10 @@
 
     <style name="DialogStyle" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorAccent">@color/blue</item>
+    </style>
+
+    <style name="RatingBar" parent="Widget.AppCompat.RatingBar.Indicator">
+        <item name="colorControlNormal">@color/darkgrey</item>
+        <item name="colorControlActivated">@color/blue</item>
     </style>
 </resources>

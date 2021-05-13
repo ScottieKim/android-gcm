@@ -67,9 +67,15 @@
                 app:layout_constraintTop_toBottomOf="@+id/textview_detail_title" />
 
             <RatingBar
-                android:id="@+id/ratingbar_detail_review"
+                android:id="@+id/ratingbar_detail_reviewresult"
+                android:layout_marginEnd="10dp"
+                style="?android:attr/ratingBarStyleIndicator"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:isIndicator="true"
+                android:rating="3"
+                android:layout_height="wrap_content"
+                android:theme="@style/RatingBar"
+                app:layout_constraintBottom_toTopOf="@+id/textview_detail_location"
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintRight_toLeftOf="@+id/textview_detail_reviewcount"
                 app:layout_constraintTop_toBottomOf="@+id/imageview_detail_photo" />
@@ -79,11 +85,12 @@
                 style="@style/ContentStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
                 android:text="4.5(980)"
-                app:layout_constraintBottom_toBottomOf="@+id/ratingbar_detail_review"
+                app:layout_constraintBottom_toBottomOf="@+id/ratingbar_detail_reviewresult"
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/ratingbar_detail_review" />
+                app:layout_constraintTop_toTopOf="@+id/ratingbar_detail_reviewresult" />
 
             <TextView
                 android:id="@+id/textview_detail_location"
@@ -154,6 +161,29 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textview_detail_desc" />
 
+            <TextView
+                android:id="@+id/textview_detail_review"
+                style="@style/TitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_marginTop="6dp"
+                android:text="Review"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textview_detail_desccontent" />
+
+            <RatingBar
+                android:id="@+id/ratingbar_detail_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="6dp"
+                android:isIndicator="false"
+                android:rating="3"
+                android:theme="@style/RatingBar"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_detail_review" />
+
             <Button
                 android:id="@+id/button_detail_submit"
                 android:layout_width="match_parent"
@@ -166,7 +196,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textview_detail_desccontent" />
+                app:layout_constraintTop_toBottomOf="@id/ratingbar_detail_review" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

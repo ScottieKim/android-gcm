@@ -78,7 +78,6 @@ class MapActivity : AppCompatActivity() {
             val builder = AlertDialog.Builder(this)
             builder.setMessage("Do you wanna select this place?")
                 .setPositiveButton("Yes") { dialog, id ->
-                    // FIRE ZE MISSILES!
                     intent.putExtra("title", title)
                     intent.putExtra("address", address)
                     intent.putExtra("lat", latlng.latitude)
