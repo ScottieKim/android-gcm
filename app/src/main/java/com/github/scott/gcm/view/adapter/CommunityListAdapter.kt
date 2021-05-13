@@ -39,7 +39,8 @@ class CommunityListAdapter(var list: List<Community>) :
         fun bind(item: Community) {
             binding.community = item
             binding.constraintlayoutCommunityContainer.setOnClickListener {
-                val intent = Intent(binding.root.context as MainActivity, DetailActivity::class.java)
+                val intent =
+                    Intent(binding.root.context as MainActivity, DetailActivity::class.java)
                 intent.putExtra("title", item.title)
                 (binding.root.context as MainActivity).startActivity(intent)
             }
@@ -56,7 +57,9 @@ class CommunityListAdapter(var list: List<Community>) :
         @JvmStatic
         @BindingAdapter("app:imgUrl")
         fun setImageUrl(view: ImageView, url: String) {
-            Glide.with(view.context).load(url).into(view)
+            if (url.isNotBlank()) {
+                Glide.with(view.context).load(url).into(view)
+            }
         }
     }
 }

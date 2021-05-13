@@ -30,8 +30,8 @@ class DetailActivity : AppCompatActivity() {
         }
 
         initViewModel(title)
-        initMap()
         initBinding()
+        initMap()
     }
 
     private fun initViewModel(title: String) {
