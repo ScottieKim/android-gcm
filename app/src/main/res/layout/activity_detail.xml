@@ -68,12 +68,12 @@
 
             <RatingBar
                 android:id="@+id/ratingbar_detail_reviewresult"
-                android:layout_marginEnd="10dp"
                 style="?android:attr/ratingBarStyleIndicator"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:isIndicator="true"
                 android:rating="3"
-                android:layout_height="wrap_content"
                 android:theme="@style/RatingBar"
                 app:layout_constraintBottom_toTopOf="@+id/textview_detail_location"
                 app:layout_constraintHorizontal_bias="1"
@@ -193,6 +193,7 @@
                 android:background="@drawable/button_blue"
                 android:text="Send request to join"
                 android:textColor="@color/white"
+                android:onClick="@{()-> viewModel.onClickJoin()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

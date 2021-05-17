@@ -42,6 +42,7 @@ class MainFragment : Fragment() {
         val list = viewModel.getAllCommunity()
         binding.recyclerviewMainNew.adapter = CommunityListAdapter(list)
         binding.recyclerviewMainRecom.adapter = CommunityListAdapter(list)
+        binding.viewModel = viewModel
     }
 
     fun refreshList() {

@@ -5,6 +5,8 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 
 class MainPagerAdapter(fm: FragmentManager, var list: List<Fragment>) : FragmentPagerAdapter(fm) {
+    var tabList = listOf<String>()
+
     override fun getItem(position: Int): Fragment = list[position]
 
     override fun getCount(): Int {

@@ -39,7 +39,12 @@ class DetailActivity : AppCompatActivity() {
     private fun initViewModel(title: String) {
         viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
         viewModel.title = title
-        viewModel.showToast.observe(this, Observer { })
+        viewModel.showToast.observe(this, Observer {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        })
+        viewModel.clickJoin.observe(this, Observer {
+            CommonUtil.showDialog(this, "참가 신청을 하시겠습니까? ", { viewModel.requestJoin() }, {})
+        })
     }
 
     private fun initBinding() {

@@ -51,7 +51,13 @@
     <!-- Detail -->
     <string name="detail_">Create new community</string>
 
+    <!-- Common -->
+    <string name="common_invite">Invite</string>
+    <string name="common_accept">Accept</string>
+    <string name="common_deny">Deny</string>
 
+    <!-- Invite -->
+    <string name="invite_dialog_message">Are you sure to invite this person?</string>
 
 
 

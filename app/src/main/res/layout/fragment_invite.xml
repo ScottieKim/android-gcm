@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.github.scott.gcm.data.viewmodel.AlertViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textview_invite_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Invite"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize_18"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearlayout_invite_search"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/button_grey"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/textview_invite_title">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="12dp"
+                android:src="@android:drawable/ic_menu_search"
+                app:tint="@color/black" />
+
+            <EditText
+                style="@style/ContentStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@null"
+                android:hint="Search users"
+                android:text="@={viewModel.keyword}"
+                android:textColor="@color/black"
+                android:textColorHint="@color/darkgrey"
+                android:textSize="@dimen/textsize_16" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_invite_search"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/button_blue"
+            android:onClick="@{()->viewModel.onClickSearch()}"
+            android:text="search"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/linearlayout_invite_search" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_inview_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_invite_search"
+            app:layout_constraintVertical_bias="0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

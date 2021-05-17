@@ -1,11 +1,14 @@
 package com.github.scott.gcm.view.activity
 
+import android.app.Dialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -16,6 +19,7 @@ import com.github.scott.gcm.R
 import com.github.scott.gcm.data.viewmodel.MainViewModel
 import com.github.scott.gcm.databinding.ActivityMainBinding
 import com.github.scott.gcm.view.adapter.MainPagerAdapter
+import com.github.scott.gcm.view.fragment.AlertActivity
 import com.github.scott.gcm.view.fragment.LikeFragment
 import com.github.scott.gcm.view.fragment.MainFragment
 import com.github.scott.gcm.view.fragment.ProfileFragment
@@ -37,6 +41,14 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
+        viewModel.moveRequest.observe(this, Observer {
+            val intent = Intent(this, ManageRequestActivity::class.java)
+            startActivity(intent)
+        })
+        viewModel.moveAlert.observe(this, Observer {
+            val intent = Intent(this, AlertActivity::class.java)
+            startActivity(intent)
+        })
         viewModel.moveCreate.observe(this, Observer {
             val intent = Intent(this, CreateActivity::class.java)
             startActivityForResult(intent, CREATE_COMMUNITY)

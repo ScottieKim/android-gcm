@@ -1,20 +1,18 @@
 package com.github.scott.gcm.data.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.github.scott.gcm.R
 import com.github.scott.gcm.data.DBUtil
 import com.github.scott.gcm.data.model.Community
 import com.github.scott.gcm.data.model.User
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 
 class MainViewModel : ViewModel() {
     var text = "text"
     private val dbUtil = DBUtil()
     var moveCreate = CalledData()
+    var moveAlert = CalledData()
+    var moveRequest = CalledData()
     var logout = CalledData()
 
     fun loggingAllUser() {
@@ -66,6 +64,13 @@ class MainViewModel : ViewModel() {
         logout.call()
     }
 
+    fun onClickAlert() {
+        moveAlert.call()
+    }
+
+    fun onClickRequest() {
+        moveRequest.call()
+    }
 
     class CalledData : MutableLiveData<Boolean>() {
         fun call() {
