@@ -51,7 +51,7 @@
                 android:hint="Search users"
                 android:text="@={viewModel.keyword}"
                 android:textColor="@color/black"
-                android:textColorHint="@color/darkgrey"
+                android:textColorHint="@color/darkgrey_1"
                 android:textSize="@dimen/textsize_16" />
 
         </LinearLayout>

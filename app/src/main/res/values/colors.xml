@@ -10,5 +10,7 @@
 
     <color name="blue">#3B6BEC</color>
     <color name="grey">#EEEEEE</color>
-    <color name="darkgrey">#A9A9A9</color>
+    <color name="darkgrey_1">#A9A9A9</color>
+    <color name="darkgrey_2">#8F9090</color>
+    <color name="darkgrey_3">#515252</color>
 </resources>

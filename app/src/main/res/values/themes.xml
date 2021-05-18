@@ -19,7 +19,7 @@
 
     <style name="ContentStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">@dimen/textsize_13</item>
-        <item name="android:textColor">@color/darkgrey</item>
+        <item name="android:textColor">@color/darkgrey_1</item>
     </style>
 
     <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
@@ -34,7 +34,7 @@
     </style>
 
     <style name="RatingBar" parent="Widget.AppCompat.RatingBar.Indicator">
-        <item name="colorControlNormal">@color/darkgrey</item>
+        <item name="colorControlNormal">@color/darkgrey_1</item>
         <item name="colorControlActivated">@color/blue</item>
     </style>
 </resources>

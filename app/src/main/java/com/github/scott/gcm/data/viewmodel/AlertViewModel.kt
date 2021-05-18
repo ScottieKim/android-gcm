@@ -17,10 +17,14 @@ class AlertViewModel(application: Application) : AndroidViewModel(application) {
     private var list: MutableList<User> = mutableListOf()
 
     var showToast = MutableLiveData<String>()
+    var clickInvitation = MutableLiveData<Int>()
     var clickAccept = MutableLiveData<Int>()
     var clickDeny = MutableLiveData<Int>()
     var setUserList = MutableLiveData<MutableList<User>>()
     var keyword = ""
+
+    var notificationList: MutableList<Invitation> = mutableListOf()
+    var clickedNotification: Invitation? = null
 
     fun onClickSearch() {
         list = dbUtil.getUserListById(keyword)?.toMutableList() ?: mutableListOf()
@@ -29,12 +33,24 @@ class AlertViewModel(application: Application) : AndroidViewModel(application) {
 
     fun onClickManageRequest(position: Int, isAccepted: Boolean) {
         // Log.e("POSITION", position.toString())
-        if(isAccepted) clickAccept.value = position
+        if (isAccepted) clickAccept.value = position
         else clickDeny.value = position
+
+        // click item
+        if (notificationList.isNotEmpty()) {
+            clickedNotification = notificationList[position]
+        }
     }
 
-    // 초대 승낙
-    fun acceptInvitation(loggedinEmail: String, position: Int) {
+    fun onClickInvitation(position: Int) {
+        clickInvitation.value = position
+    }
+
+    // 초대
+    fun sendInvitation(position: Int, isAccepted: Boolean) {
+        val context = getApplication<Application>().applicationContext
+        val loggedinEmail = CommonUtil.getUser(context)
+
         val community = dbUtil.getCommunityByUser(loggedinEmail)
         if (community != null) {
             val invitation = Invitation().apply {
@@ -50,16 +66,23 @@ class AlertViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     // 신청 승낙
-    fun manageRequest(user: User, isAccepted: Boolean) {
+    // isRequest : Join Request 인지 여부
+    fun manageRequest(user: User, isAccepted: Boolean, isRequest: Boolean) {
         val hostEmail = CommonUtil.getUser(getApplication<Application>().applicationContext)
-        val community = dbUtil.getCommunityByUser(hostEmail)
+        val community = if (isRequest) dbUtil.getCommunityByUser(hostEmail) else {
+            val commTitle = clickedNotification?.communityTitle
+            if (commTitle != null) {
+                dbUtil.getCommunityByTitle(commTitle)
+            } else {
+                null
+            }
+        }
 
         // Log
-//        Log.e("Join Request 1 ", " ")
-//        for (item in dbUtil.getAllJoinRequest(community, hostEmail)) {
-//            Log.e(">>> ", "${item.communityTitle}   ${item.guestEmail}")
-//        }
-
+        Log.e("Join Request 1 ", " ")
+        for (item in dbUtil.getAllJoinRequest(community, hostEmail)) {
+            Log.e(">>> ", "${item.communityTitle}   ${item.guestEmail}")
+        }
 
         if (community != null) {
             if (isAccepted) {
@@ -72,25 +95,36 @@ class AlertViewModel(application: Application) : AndroidViewModel(application) {
             }
 
             // Log
-//            Log.e("Community User 2 ", " ")
-//            for (item in dbUtil.getAllEntities<CommunityUser>()) {
-//                Log.e(">>> ", "${item.communityTitle}   ${item.email}")
-//            }
+            Log.e("Community User 2 ", " ")
+            for (item in dbUtil.getAllEntities<CommunityUser>()) {
+                Log.e(">>> ", "${item.communityTitle}   ${item.email}")
+            }
 
 
             // 2. delete JoinRequest
-            val joinRequest = dbUtil.getJoinRequestByUser(user.email, community.title)
-            dbUtil.deleteEntity(joinRequest!!)
+            if (isRequest) {
+                val joinRequest = dbUtil.getJoinRequestByUser(user.email, community.title)
+                dbUtil.deleteEntity(joinRequest!!)
+            } else {
+                // Invitation
+                val invitation = dbUtil.getInvitationByUser(user.email, community.title)
+                dbUtil.deleteEntity(invitation)
+            }
 
 
             // Log
-//            Log.e("Join Request 3 ", " ")
-//            for (item in dbUtil.getAllJoinRequest(community, hostEmail)) {
-//                Log.e(">>> ", "${item.communityTitle}   ${item.guestEmail}")
-//            }
+            Log.e("Join Request 3 ", " ")
+            for (item in dbUtil.getAllJoinRequest(community, hostEmail)) {
+                Log.e(">>> ", "${item.communityTitle}   ${item.guestEmail}")
+            }
+
+            // Log
+            Log.e("Invitation3 ", " ")
+            for (item in dbUtil.getAllInvitationByUser(user.email)) {
+                Log.e(">>> ", "${item.communityTitle}   ${item.guestEmail}")
+            }
+
         }
-
-
     }
 
     // Manage Request List 구성
@@ -105,5 +139,12 @@ class AlertViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
         return userList
+    }
+
+    // Notification List 구성
+    fun getInvitationList(): List<Invitation> {
+        val context = getApplication<Application>().applicationContext
+        val email = CommonUtil.getUser(context)
+        return dbUtil.getAllInvitationByUser(email).toMutableList()
     }
 }

@@ -29,47 +29,38 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <!--        <FrameLayout-->
-        <!--            android:id="@+id/framelayout_alert"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:clipToPadding="false"-->
-        <!--            android:padding="20dp"-->
-        <!--            app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--            app:layout_constraintRight_toRightOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/textview_alert_title">-->
-
-        <!--            <View-->
-        <!--                android:id="@+id/indicator_alert"-->
-        <!--                android:layout_width="0dp"-->
-        <!--                android:layout_height="50dp"-->
-        <!--                android:background="@drawable/gradient_bg" />-->
-
-        <!--            <com.google.android.material.tabs.TabLayout-->
-        <!--                android:id="@+id/tab_alert"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="50dp"-->
-        <!--                android:background="@drawable/tab_bg"-->
-        <!--                app:tabGravity="fill"-->
-        <!--                app:tabIndicatorColor="@null"-->
-        <!--                app:tabMode="fixed"-->
-        <!--                app:tabRippleColor="@null"-->
-        <!--                app:tabSelectedTextColor="#ffffff" />-->
-        <!--        </FrameLayout>-->
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_alert"
+        <FrameLayout
+            android:id="@+id/framelayout_alert"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:background="@drawable/tab_bg"
+            android:layout_margin="20dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_alert_title"
-            app:tabGravity="fill"
-            app:tabIndicatorColor="@color/blue"
-            app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/blue"
-            app:tabTextColor="@color/black" />
+            app:layout_constraintTop_toBottomOf="@+id/textview_alert_title">
+
+            <View
+                android:id="@+id/indicator"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/gradient_bg"/>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_alert"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+
+                android:layout_gravity="center_vertical"
+                app:tabGravity="fill"
+                app:tabMode="fixed"
+                app:tabIndicator="@null"
+                app:tabTextColor="@color/darkgrey_3"
+                app:tabSelectedTextColor="@color/blue"
+                app:tabIndicatorColor="@null"
+                app:tabRippleColor="@null"/>
+        </FrameLayout>
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewpager_alert"
@@ -78,6 +69,6 @@
             android:layout_weight="1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tab_alert" />
+            app:layout_constraintTop_toBottomOf="@+id/framelayout_alert" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

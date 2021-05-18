@@ -44,7 +44,7 @@
             android:layout_height="35dp"
             android:layout_marginEnd="6dp"
             android:background="@drawable/button_blue"
-            android:onClick="@{()->viewModel.onClickManageRequest(position, true)}"
+            android:onClick="@{()-> isSearch ? viewModel.onClickInvitation(position) : viewModel.onClickManageRequest(position, true)}"
             android:text="@{isSearch ? @string/common_invite : @string/common_accept, default=@string/common_invite}"
             android:textColor="@color/white"
             android:textSize="@dimen/textsize_13"

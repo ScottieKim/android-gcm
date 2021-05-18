@@ -7,12 +7,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.github.scott.gcm.R
-import com.github.scott.gcm.data.model.User
 import com.github.scott.gcm.data.viewmodel.AlertViewModel
 import com.github.scott.gcm.databinding.FragmentInviteBinding
+import com.github.scott.gcm.view.activity.AlertActivity
 import com.github.scott.gcm.view.adapter.UserListAdapter
 
 class InvitationFragment : Fragment() {

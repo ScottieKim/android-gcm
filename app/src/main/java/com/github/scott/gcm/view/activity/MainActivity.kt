@@ -1,14 +1,9 @@
 package com.github.scott.gcm.view.activity
 
-import android.app.Dialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -19,7 +14,6 @@ import com.github.scott.gcm.R
 import com.github.scott.gcm.data.viewmodel.MainViewModel
 import com.github.scott.gcm.databinding.ActivityMainBinding
 import com.github.scott.gcm.view.adapter.MainPagerAdapter
-import com.github.scott.gcm.view.fragment.AlertActivity
 import com.github.scott.gcm.view.fragment.LikeFragment
 import com.github.scott.gcm.view.fragment.MainFragment
 import com.github.scott.gcm.view.fragment.ProfileFragment

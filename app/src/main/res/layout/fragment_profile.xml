@@ -73,7 +73,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
             android:text="@string/profile_personal_title"
-            android:textColor="@color/darkgrey" />
+            android:textColor="@color/darkgrey_1" />
 
         <LinearLayout
             android:layout_width="match_parent"

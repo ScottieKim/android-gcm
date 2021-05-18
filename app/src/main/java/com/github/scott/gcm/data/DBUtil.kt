@@ -144,6 +144,26 @@ class DBUtil {
         return result
     }
 
+    // Invitation
+    fun getAllInvitationByUser(guestEmail: String): List<Invitation> {
+        val realm: Realm = Realm.getDefaultInstance()
+        realm.beginTransaction()
+        val list = realm.where(Invitation::class.java).equalTo(FIELD_INVITATION_GUEST_EMAIL, guestEmail).findAll()
+        val result = realm.copyFromRealm(list)
+        realm.commitTransaction()
+        return result
+    }
+
+    fun getInvitationByUser(guestEmail: String, communityTitle: String): Invitation {
+        val realm: Realm = Realm.getDefaultInstance()
+        realm.beginTransaction()
+        val list = realm.where(Invitation::class.java).equalTo(FIELD_INVITATION_GUEST_EMAIL, guestEmail)
+            .equalTo(FIELD_INVITATION_COMMUNITY_TITLE, communityTitle).findFirst()
+        val result = realm.copyFromRealm(list)
+        realm.commitTransaction()
+        return result
+    }
+
 
     inline fun <reified T : RealmObject> insertEntity(entity: T) {
         val realm: Realm = Realm.getDefaultInstance()
@@ -213,6 +233,11 @@ class DBUtil {
                 saved = query
                     .equalTo(FIELD_JOIN_REQUEST_COMMUNITY_TITLE, entity.communityTitle)
                     .equalTo(FIELD_JOIN_REQUEST_GUEST_EMAIL, entity.guestEmail).findFirst()
+            }
+            is Invitation ->{
+                saved = query
+                    .equalTo(FIELD_INVITATION_COMMUNITY_TITLE, entity.communityTitle)
+                    .equalTo(FIELD_INVITATION_GUEST_EMAIL, entity.guestEmail).findFirst()
             }
         }
         saved?.deleteFromRealm()

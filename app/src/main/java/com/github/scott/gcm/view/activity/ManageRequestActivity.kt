@@ -30,7 +30,7 @@ class ManageRequestActivity : AppCompatActivity() {
                 positiveTask = {
                     val adapter = (binding.recyclerviewManage.adapter as UserListAdapter)
                     val item = adapter.list[position]
-                    viewModel.manageRequest(item, isAccepted)
+                    viewModel.manageRequest(item, isAccepted, true )
                     adapter.deleteItem(position)
 
                     val msg =
