@@ -23,7 +23,7 @@ class CreateViewModel : ViewModel() {
         community.title = title
         community.description = desc
 
-        dbUtil.insertCommunity(community)
+        dbUtil.insertEntity(community)
         showToast.value = "커뮤니티 생성이 완료되었습니다."
 
         Log.e(

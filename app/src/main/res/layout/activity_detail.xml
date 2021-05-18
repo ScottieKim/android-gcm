@@ -86,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
-                android:text="4.5(980)"
+                android:text= "@{String.format(@string/detail_review_format, viewModel.average, viewModel.count)}"
                 app:layout_constraintBottom_toBottomOf="@+id/ratingbar_detail_reviewresult"
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintRight_toRightOf="parent"

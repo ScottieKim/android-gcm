@@ -45,12 +45,12 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             this.name = this@LoginViewModel.name
         }
 
-        dbUtil.insertUser(user)
+        dbUtil.insertEntity(user)
 
         Toast.makeText(getApplication(), "회원가입 완료", Toast.LENGTH_SHORT).show()
 
         // Log
-        val list = dbUtil.getallUsers()
+        val list = dbUtil.getAllEntities<User>()
         for (item in list) {
             Log.e("Google 로그인", "name: ${item.name}  email: ${item.email}  password:${item.password}")
         }

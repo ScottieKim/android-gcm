@@ -19,4 +19,9 @@ open class Community : RealmObject() {
     var startDate = ""
 
     var endDate = ""
+
+    companion object{
+        val FIELD_COMMUNITY_TITLE = "title"
+    }
+
 }

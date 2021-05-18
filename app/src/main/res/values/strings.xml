@@ -50,6 +50,7 @@
 
     <!-- Detail -->
     <string name="detail_">Create new community</string>
+    <string name="detail_review_format">%s(%d)</string>
 
     <!-- Common -->
     <string name="common_invite">Invite</string>

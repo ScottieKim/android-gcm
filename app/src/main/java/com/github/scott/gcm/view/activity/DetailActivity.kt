@@ -39,12 +39,16 @@ class DetailActivity : AppCompatActivity() {
     private fun initViewModel(title: String) {
         viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
         viewModel.title = title
+        viewModel.clickBack.observe(this, Observer {
+            finish()
+        })
         viewModel.showToast.observe(this, Observer {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         })
         viewModel.clickJoin.observe(this, Observer {
             CommonUtil.showDialog(this, "참가 신청을 하시겠습니까? ", { viewModel.requestJoin() }, {})
         })
+        viewModel.averageReview()
     }
 
     private fun initBinding() {
@@ -55,7 +59,7 @@ class DetailActivity : AppCompatActivity() {
             builder.setMessage("Are you sure to rate?")
                 .setPositiveButton("Yes") { dialog, id ->
                     Toast.makeText(this, "평점 등록이 완료되었습니다.", Toast.LENGTH_SHORT).show()
-                    binding.ratingbarDetailReview.setIsIndicator(false)
+                    binding.ratingbarDetailReview.setIsIndicator(true)
 
                     val title = intent.getStringExtra("title") ?: ""
                     val email = CommonUtil.getUser(this)

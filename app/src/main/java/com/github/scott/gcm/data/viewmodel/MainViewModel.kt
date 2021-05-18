@@ -16,32 +16,34 @@ class MainViewModel : ViewModel() {
     var logout = CalledData()
 
     fun loggingAllUser() {
-        val list = dbUtil.getallUsers()
+        val list = dbUtil.getAllEntities<User>()
         for (item in list) {
             Log.e("유저", "name: ${item.name}  email: ${item.email}  password:${item.password}")
         }
     }
 
     fun getAllCommunity(): List<Community> {
-        return dbUtil.getAllCommunity()
+        return dbUtil.getAllEntities()
     }
 
     fun insertTestCommunity() {
         // Insert Test
-        dbUtil.insertCommunity(Community().apply {
-            title = "comm3"
-            description = "desc3"
-            img =
-                "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDExMTFfNzYg%2FMDAxNjA1MDU4MjUzMDEw.orHYaSZZJ-L8P2i-v-0RNqz1N_DBWxx_nCy6tTgw-Isg.TaGs_IMX4KEuUBlCzUfNSSz7wB-SSZzAwj5DzwK763sg.JPEG.cldpidfoh20%2FKakaoTalk_20201109_120808460_06.jpg&type=a340"
-        })
-        dbUtil.insertCommunity(Community().apply {
+        dbUtil.insertEntity(
+            Community().apply {
+                title = "comm3"
+                description = "desc3"
+                img =
+                    "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDExMTFfNzYg%2FMDAxNjA1MDU4MjUzMDEw.orHYaSZZJ-L8P2i-v-0RNqz1N_DBWxx_nCy6tTgw-Isg.TaGs_IMX4KEuUBlCzUfNSSz7wB-SSZzAwj5DzwK763sg.JPEG.cldpidfoh20%2FKakaoTalk_20201109_120808460_06.jpg&type=a340"
+            }
+        )
+        dbUtil.insertEntity(Community().apply {
             title = "comm4"
             description = "desc2"
             img =
                 "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDExMTFfNzYg%2FMDAxNjA1MDU4MjUzMDEw.orHYaSZZJ-L8P2i-v-0RNqz1N_DBWxx_nCy6tTgw-Isg.TaGs_IMX4KEuUBlCzUfNSSz7wB-SSZzAwj5DzwK763sg.JPEG.cldpidfoh20%2FKakaoTalk_20201109_120808460_06.jpg&type=a340"
 
         })
-        dbUtil.insertCommunity(Community().apply {
+        dbUtil.insertEntity(Community().apply {
             title = "comm5"
             description = "desc3"
             img =

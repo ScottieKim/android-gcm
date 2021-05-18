@@ -11,4 +11,8 @@ open class User : RealmObject() {
 
     var name = ""
 
+    companion object{
+        val FIELD_USER_EMAIL = "email"
+    }
+
 }

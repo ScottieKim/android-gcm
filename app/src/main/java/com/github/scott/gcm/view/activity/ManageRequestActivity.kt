@@ -22,17 +22,17 @@ class ManageRequestActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(AlertViewModel::class.java)
 
 
-        // viewmodel로 옮기기
-        val dbUtil = DBUtil()
-        val list = dbUtil.getAllJoinRequest(null, CommonUtil.getUser(this))
-        val userList = mutableListOf<User>()
-        for (request in list) {
-            val user = dbUtil.getUserById(request.guestEmail)
-            if (user != null) {
-                userList.add(user)
-            }
-        }
-
-        binding.recyclerviewManage.adapter = UserListAdapter(userList, viewModel, false)
+//        // viewmodel로 옮기기
+//        val dbUtil = DBUtil()
+//        val list = dbUtil.getAllJoinRequest(null, CommonUtil.getUser(this))
+//        val userList = mutableListOf<User>()
+//        for (request in list) {
+//            val user = dbUtil.getUserById(request.guestEmail)
+//            if (user != null) {
+//                userList.add(user)
+//            }
+//        }
+//
+//        binding.recyclerviewManage.adapter = UserListAdapter(userList, viewModel, false)
     }
 }
