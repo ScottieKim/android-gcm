@@ -60,9 +60,9 @@
     <!-- Invite -->
     <string name="invite_dialog_message">Are you sure to invite this person?</string>
 
-
-
-
+    <!-- Manage Request -->
+    <string name="managerequest_dialog_message_accept">Are you sure to accept?</string>
+    <string name="managerequest_dialog_message_deny">Are you sure to deny?</string>
 
 
 </resources>

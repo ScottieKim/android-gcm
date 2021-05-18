@@ -9,7 +9,7 @@ import com.github.scott.gcm.data.model.User
 import com.github.scott.gcm.data.viewmodel.AlertViewModel
 import com.github.scott.gcm.databinding.ItemSearchuserBinding
 
-class UserListAdapter(var list: List<User>, val viewModel: AlertViewModel, val isSearch : Boolean) :
+class UserListAdapter(var list: MutableList<User>, val viewModel: AlertViewModel, val isSearch : Boolean) :
     RecyclerView.Adapter<UserListAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -28,8 +28,13 @@ class UserListAdapter(var list: List<User>, val viewModel: AlertViewModel, val i
         holder.bind(list[position])
     }
 
-    fun setUserList(list: List<User>) {
+    fun setUserList(list: MutableList<User>) {
         this.list = list
+        this.notifyDataSetChanged()
+    }
+
+    fun deleteItem(position: Int){
+        this.list.removeAt(position)
         this.notifyDataSetChanged()
     }
 

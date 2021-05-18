@@ -126,6 +126,24 @@ class DBUtil {
         return result
     }
 
+    fun getJoinRequestByUser(email: String, communityTitle: String): JoinRequest? {
+        val realm: Realm = Realm.getDefaultInstance()
+        realm.beginTransaction()
+        val list =
+            realm.where(JoinRequest::class.java)
+                .equalTo(FIELD_JOIN_REQUEST_GUEST_EMAIL, email)
+                .equalTo(FIELD_JOIN_REQUEST_COMMUNITY_TITLE, communityTitle)
+                .findFirst()
+
+        var result: JoinRequest? = null
+        if (list != null) {
+            result = realm.copyFromRealm(list)
+        }
+
+        realm.commitTransaction()
+        return result
+    }
+
 
     inline fun <reified T : RealmObject> insertEntity(entity: T) {
         val realm: Realm = Realm.getDefaultInstance()
@@ -183,6 +201,22 @@ class DBUtil {
         val result = realm.copyFromRealm(list)
         realm.commitTransaction()
         return result
+    }
+
+    inline fun <reified T : RealmObject> deleteEntity(entity: T) {
+        val realm = Realm.getDefaultInstance()
+        realm.beginTransaction()
+        val query = realm.where(T::class.java)
+        var saved: T? = null
+        when (entity) {
+            is JoinRequest -> {
+                saved = query
+                    .equalTo(FIELD_JOIN_REQUEST_COMMUNITY_TITLE, entity.communityTitle)
+                    .equalTo(FIELD_JOIN_REQUEST_GUEST_EMAIL, entity.guestEmail).findFirst()
+            }
+        }
+        saved?.deleteFromRealm()
+        realm.commitTransaction()
     }
 
 }

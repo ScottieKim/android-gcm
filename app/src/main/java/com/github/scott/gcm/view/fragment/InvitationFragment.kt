@@ -36,7 +36,7 @@ class InvitationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = UserListAdapter(listOf(), viewModel, true)
+        adapter = UserListAdapter(mutableListOf(), viewModel, true)
         binding.recyclerviewInviewList.adapter = adapter
         binding.viewModel = viewModel
 
