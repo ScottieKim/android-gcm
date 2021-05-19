@@ -24,6 +24,8 @@ class MainViewModel : ViewModel() {
     var searchType = ""
 
     var isEmpty = true
+    var currentLat = 0.0
+    var currentLng = 0.0
 
     fun loggingAllUser() {
         val list = dbUtil.getAllEntities<User>()

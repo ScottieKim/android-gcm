@@ -1,12 +1,22 @@
 package com.github.scott.gcm.view.activity
 
+import android.Manifest.permission.ACCESS_COARSE_LOCATION
+import android.Manifest.permission.ACCESS_FINE_LOCATION
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.PorterDuff
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -32,6 +42,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
     private lateinit var mainFragment: MainFragment
     private val CREATE_COMMUNITY = 10002
+    private val REQUEST_PERMISSIONS = 10003
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,6 +99,8 @@ class MainActivity : AppCompatActivity() {
         binding.viewModel = viewModel
 
         initPager()
+
+        requestPermission()
     }
 
     private fun initPager() {
@@ -164,5 +177,80 @@ class MainActivity : AppCompatActivity() {
             }, year, month, day
         )
         dialog.show()
+    }
+
+
+    @SuppressLint("MissingPermission")
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_PERMISSIONS) {
+            var isAllGranted = true
+            for (result in grantResults) {
+                if (result == PackageManager.PERMISSION_DENIED) {
+                    isAllGranted = false
+                    break
+                }
+            }
+
+            if (isAllGranted) {
+                val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+
+                if (isAllPermissionsGranted()) {
+                    locationManager.requestLocationUpdates(
+                        LocationManager.GPS_PROVIDER,
+                        0L, // 갱신주기 (ms)
+                        0f, // 갱신거리
+                        object : LocationListener {
+                            override fun onLocationChanged(location: Location) {
+                                Log.e(
+                                    "CURRENT LOCATION",
+                                    "lat: ${location.latitude}     lng: ${location.longitude}"
+                                )
+
+                                // 한번만 가져오기위해 리스너 삭제
+                                locationManager.removeUpdates(this)
+
+                                viewModel.currentLat = location.latitude
+                                viewModel.currentLng = location.longitude
+
+                                mainFragment.setRecommend()
+                            }
+                        })
+                }
+
+            }
+
+        } else {
+            val message = "위치 권한을 허용해야 주변 추천 기능을 사용할 수 있습니다."
+            Toast.makeText(this@MainActivity, message, Toast.LENGTH_LONG).show()
+        }
+    }
+
+
+    private fun requestPermission() {
+        val permissions = arrayOf(ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION)
+        requestPermissions(permissions, REQUEST_PERMISSIONS)
+    }
+
+    private fun isAllPermissionsGranted(): Boolean {
+        var isAllGranted = true
+        val permissions = listOf(ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION)
+        for (permission in permissions) {
+            val check = ActivityCompat.checkSelfPermission(
+                this,
+                permission
+            ) == PackageManager.PERMISSION_GRANTED
+
+            if (!check) {
+                isAllGranted = false
+                break
+            }
+        }
+
+        return isAllGranted
     }
 }
