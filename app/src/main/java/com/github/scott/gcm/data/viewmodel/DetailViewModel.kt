@@ -9,10 +9,12 @@ import com.github.scott.gcm.data.DBUtil
 import com.github.scott.gcm.data.model.Community
 import com.github.scott.gcm.data.model.JoinRequest
 import com.github.scott.gcm.data.model.Review
+import com.google.android.gms.common.internal.service.Common
 import kotlin.math.roundToInt
 
 class DetailViewModel(application: Application) : AndroidViewModel(application) {
     private val dbUtil = DBUtil()
+    val email = CommonUtil.getUser(getApplication<Application>().applicationContext)
 
     var title: String = ""
         set(value) {
@@ -20,7 +22,8 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
             community = dbUtil.getCommunityByTitle(value)
         }
 
-    var average = ""
+    var average = 0.0
+    var averageText = ""
     var count = 0
 
     var community: Community? = null
@@ -30,6 +33,15 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
     var clickJoin = MainViewModel.CalledData()
 
     var clickBack = MainViewModel.CalledData()
+
+    var isJoined = false
+        get() = dbUtil.getCommunityUserByUserAndTitle(email, title) != null
+
+    var isReviewDone = false
+        get() = dbUtil.getReviewByUserAndTitle(email, title) != null
+
+    var rating = 3f
+        get() = dbUtil.getReviewByUserAndTitle(email, title)?.review ?: 3f
 
     fun onClickBack() = clickBack.call()
 
@@ -51,11 +63,11 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
             sum += item.review
         }
 
-        val avg = (sum / (reviewList.size)).toDouble()
-        average = (String.format("%.2f", avg)) // 소수 두번째 자리까지 자르기
+        average = (sum / (reviewList.size)).toDouble()
+        averageText = (String.format("%.2f", average)) // 소수 두번째 자리까지 자르기
         count = reviewList.size
 
-        println("Average : $average")
+        println("Average : $averageText")
         println("Count : $count")
     }
 

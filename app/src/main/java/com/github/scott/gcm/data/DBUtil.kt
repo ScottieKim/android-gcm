@@ -11,9 +11,7 @@ import com.github.scott.gcm.data.model.Review.Companion.FIELD_REVIEW_COMMUNITY_T
 import com.github.scott.gcm.data.model.Review.Companion.FIELD_REVIEW_EMAIL
 import com.github.scott.gcm.data.model.User.Companion.FIELD_USER_EMAIL
 import io.realm.Realm
-import io.realm.RealmModel
 import io.realm.RealmObject
-import kotlin.reflect.typeOf
 
 
 class DBUtil {
@@ -97,11 +95,26 @@ class DBUtil {
         return result
     }
 
+    fun getCommunityByType(type: String): List<Community> {
+        val realm: Realm = Realm.getDefaultInstance()
+        realm.beginTransaction()
+        val list = realm.where(Community::class.java).equalTo("type", type).findAll()
+
+        var result: List<Community> = listOf()
+        if (list != null) {
+            result = realm.copyFromRealm(list)
+        }
+
+        realm.commitTransaction()
+        return result
+    }
+
     // CommunityUser
     fun getCommunityUserByUser(email: String): List<CommunityUser> {
         val realm: Realm = Realm.getDefaultInstance()
         realm.beginTransaction()
-        val list = realm.where(CommunityUser::class.java).equalTo(CommunityUser.FIELD_COMMUNITY_USER_EMAIL, email).findAll()
+        val list = realm.where(CommunityUser::class.java)
+            .equalTo(CommunityUser.FIELD_COMMUNITY_USER_EMAIL, email).findAll()
 
         var result: List<CommunityUser> = listOf()
         if (list != null) {
@@ -112,14 +125,16 @@ class DBUtil {
         return result
     }
 
-    fun getCommunityByType(type: String): List<Community> {
+    fun getCommunityUserByUserAndTitle(email: String, title: String): CommunityUser? {
         val realm: Realm = Realm.getDefaultInstance()
         realm.beginTransaction()
-        val list = realm.where(Community::class.java).equalTo("type", type).findAll()
+        val item = realm.where(CommunityUser::class.java)
+            .equalTo(CommunityUser.FIELD_COMMUNITY_USER_EMAIL, email)
+            .equalTo(CommunityUser.FIELD_COMMUNITY_TITLE, title).findFirst()
 
-        var result: List<Community> = listOf()
-        if (list != null) {
-            result = realm.copyFromRealm(list)
+        var result: CommunityUser? = null
+        if (item != null) {
+            result = realm.copyFromRealm(item)
         }
 
         realm.commitTransaction()
@@ -177,7 +192,9 @@ class DBUtil {
     fun getAllInvitationByUser(guestEmail: String): List<Invitation> {
         val realm: Realm = Realm.getDefaultInstance()
         realm.beginTransaction()
-        val list = realm.where(Invitation::class.java).equalTo(FIELD_INVITATION_GUEST_EMAIL, guestEmail).findAll()
+        val list =
+            realm.where(Invitation::class.java).equalTo(FIELD_INVITATION_GUEST_EMAIL, guestEmail)
+                .findAll()
         val result = realm.copyFromRealm(list)
         realm.commitTransaction()
         return result
@@ -186,13 +203,29 @@ class DBUtil {
     fun getInvitationByUser(guestEmail: String, communityTitle: String): Invitation {
         val realm: Realm = Realm.getDefaultInstance()
         realm.beginTransaction()
-        val list = realm.where(Invitation::class.java).equalTo(FIELD_INVITATION_GUEST_EMAIL, guestEmail)
-            .equalTo(FIELD_INVITATION_COMMUNITY_TITLE, communityTitle).findFirst()
+        val list =
+            realm.where(Invitation::class.java).equalTo(FIELD_INVITATION_GUEST_EMAIL, guestEmail)
+                .equalTo(FIELD_INVITATION_COMMUNITY_TITLE, communityTitle).findFirst()
         val result = realm.copyFromRealm(list)
         realm.commitTransaction()
         return result
     }
 
+    // Review
+    fun getReviewByUserAndTitle(email: String, title: String): Review? {
+        val realm: Realm = Realm.getDefaultInstance()
+        realm.beginTransaction()
+        val item =
+            realm.where(Review::class.java).equalTo(FIELD_REVIEW_EMAIL, email)
+                .equalTo(FIELD_REVIEW_COMMUNITY_TITLE, title).findFirst()
+        var result: Review? = null
+        if (item != null) {
+            result = realm.copyFromRealm(item)
+        }
+
+        realm.commitTransaction()
+        return result
+    }
 
     inline fun <reified T : RealmObject> insertEntity(entity: T) {
         val realm: Realm = Realm.getDefaultInstance()
@@ -263,7 +296,7 @@ class DBUtil {
                     .equalTo(FIELD_JOIN_REQUEST_COMMUNITY_TITLE, entity.communityTitle)
                     .equalTo(FIELD_JOIN_REQUEST_GUEST_EMAIL, entity.guestEmail).findFirst()
             }
-            is Invitation ->{
+            is Invitation -> {
                 saved = query
                     .equalTo(FIELD_INVITATION_COMMUNITY_TITLE, entity.communityTitle)
                     .equalTo(FIELD_INVITATION_GUEST_EMAIL, entity.guestEmail).findFirst()

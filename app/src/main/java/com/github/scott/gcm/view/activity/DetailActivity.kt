@@ -55,23 +55,33 @@ class DetailActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail)
         binding.viewModel = viewModel
         binding.ratingbarDetailReview.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
-            val builder = AlertDialog.Builder(this)
-            builder.setMessage("Are you sure to rate?")
-                .setPositiveButton("Yes") { dialog, id ->
-                    Toast.makeText(this, "평점 등록이 완료되었습니다.", Toast.LENGTH_SHORT).show()
-                    binding.ratingbarDetailReview.setIsIndicator(true)
+            if (!viewModel.isReviewDone) {
+                val builder = AlertDialog.Builder(this)
+                builder.setMessage("Are you sure to rate?")
+                    .setPositiveButton("Yes") { dialog, id ->
+                        Toast.makeText(this, "평점 등록이 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                        binding.ratingbarDetailReview.setIsIndicator(true)
 
-                    val title = intent.getStringExtra("title") ?: ""
-                    val email = CommonUtil.getUser(this)
-                    viewModel.insertReview(title, email, rating)
+                        val title = intent.getStringExtra("title") ?: ""
+                        val email = CommonUtil.getUser(this)
+                        viewModel.insertReview(title, email, rating)
 
-                }
-                .setNegativeButton("No") { dialog, id ->
-                }
-            // Create the AlertDialog object and return it
-            builder.create()
-            builder.show()
+                    }
+                    .setNegativeButton("No") { dialog, id ->
+                    }
+                // Create the AlertDialog object and return it
+                builder.create()
+                builder.show()
+            }
         }
+
+        if (viewModel.isJoined && viewModel.isReviewDone) {
+            binding.ratingbarDetailReview.rating = viewModel.rating
+        }
+
+        binding.ratingbarDetailReviewresult.stepSize = 0.01f
+        binding.ratingbarDetailReviewresult.rating = viewModel.average.toFloat()
+
     }
 
     private fun initMap() {

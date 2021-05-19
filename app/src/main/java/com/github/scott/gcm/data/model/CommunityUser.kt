@@ -8,5 +8,6 @@ open class CommunityUser : RealmObject() {
 
     companion object {
         val FIELD_COMMUNITY_USER_EMAIL = "email"
+        val FIELD_COMMUNITY_TITLE = "communityTitle"
     }
 }

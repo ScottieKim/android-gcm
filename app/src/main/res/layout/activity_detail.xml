@@ -68,12 +68,11 @@
 
             <RatingBar
                 android:id="@+id/ratingbar_detail_reviewresult"
-                style="?android:attr/ratingBarStyleIndicator"
+                style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:isIndicator="true"
-                android:rating="3"
                 android:theme="@style/RatingBar"
                 app:layout_constraintBottom_toTopOf="@+id/textview_detail_location"
                 app:layout_constraintHorizontal_bias="1"
@@ -86,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
-                android:text= "@{String.format(@string/detail_review_format, viewModel.average, viewModel.count)}"
+                android:text="@{String.format(@string/detail_review_format, viewModel.averageText, viewModel.count)}"
                 app:layout_constraintBottom_toBottomOf="@+id/ratingbar_detail_reviewresult"
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintRight_toRightOf="parent"
@@ -169,7 +168,20 @@
                 android:layout_margin="20dp"
                 android:layout_marginTop="6dp"
                 android:text="Review"
+                android:visibility="@{viewModel.isJoined ? View.VISIBLE : View.GONE, default=visible}"
                 app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textview_detail_desccontent" />
+
+            <TextView
+                android:id="@+id/textview_detail_review_done"
+                style="@style/TitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_marginTop="6dp"
+                android:text="(already done)"
+                android:visibility="@{viewModel.isReviewDone ? View.VISIBLE : View.GONE, default=gone}"
+                app:layout_constraintLeft_toRightOf="@+id/textview_detail_review"
                 app:layout_constraintTop_toBottomOf="@id/textview_detail_desccontent" />
 
             <RatingBar
@@ -178,9 +190,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="6dp"
-                android:isIndicator="false"
-                android:rating="3"
+                android:isIndicator="@{viewModel.isReviewDone}"
+
                 android:theme="@style/RatingBar"
+                android:visibility="@{viewModel.isJoined ? View.VISIBLE : View.GONE, default=visible}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textview_detail_review" />
 
@@ -191,9 +204,9 @@
                 android:layout_margin="20dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/button_blue"
+                android:onClick="@{()-> viewModel.onClickJoin()}"
                 android:text="Send request to join"
                 android:textColor="@color/white"
-                android:onClick="@{()-> viewModel.onClickJoin()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
