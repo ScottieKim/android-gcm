@@ -20,6 +20,7 @@ class AlertViewModel(application: Application) : AndroidViewModel(application) {
     var clickInvitation = MutableLiveData<Int>()
     var clickAccept = MutableLiveData<Int>()
     var clickDeny = MutableLiveData<Int>()
+    var clickBack = MainViewModel.CalledData()
     var setUserList = MutableLiveData<MutableList<User>>()
     var keyword = ""
 
@@ -29,6 +30,10 @@ class AlertViewModel(application: Application) : AndroidViewModel(application) {
     fun onClickSearch() {
         list = dbUtil.getUserListById(keyword)?.toMutableList() ?: mutableListOf()
         setUserList.value = list
+    }
+
+    fun onClickBack(){
+        clickBack.call()
     }
 
     fun onClickManageRequest(position: Int, isAccepted: Boolean) {

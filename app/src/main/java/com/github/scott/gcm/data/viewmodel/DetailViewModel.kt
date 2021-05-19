@@ -16,24 +16,11 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
     private val dbUtil = DBUtil()
     val email = CommonUtil.getUser(getApplication<Application>().applicationContext)
 
-    var title: String = ""
-        set(value) {
-            field = value
-            community = dbUtil.getCommunityByTitle(value)
-        }
 
+    // review
     var average = 0.0
     var averageText = ""
     var count = 0
-
-    var community: Community? = null
-
-    var showToast = MutableLiveData<String>()
-
-    var clickJoin = MainViewModel.CalledData()
-
-    var clickBack = MainViewModel.CalledData()
-
     var isJoined = false
         get() = dbUtil.getCommunityUserByUserAndTitle(email, title) != null
 
@@ -42,6 +29,22 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
 
     var rating = 3f
         get() = dbUtil.getReviewByUserAndTitle(email, title)?.review ?: 3f
+
+    // community
+    var community: Community? = null
+    var title: String = ""
+        set(value) {
+            field = value
+            community = dbUtil.getCommunityByTitle(value)
+        }
+    var memberCount = ""
+        get() = dbUtil.getCommunityUserByTitle(title).size.toString()
+
+    // livedata
+    var showToast = MutableLiveData<String>()
+    var clickJoin = MainViewModel.CalledData()
+    var clickBack = MainViewModel.CalledData()
+
 
     fun onClickBack() = clickBack.call()
 

@@ -36,6 +36,7 @@ class AlertActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_alert)
         viewModel = ViewModelProvider(this).get(AlertViewModel::class.java)
+        viewModel.clickBack.observe(this, Observer { finish() })
         viewModel.clickInvitation.observe(this, Observer { position ->
             CommonUtil.showDialog(context = this,
                 message = resources.getString(R.string.invite_dialog_message),

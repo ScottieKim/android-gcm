@@ -111,6 +111,7 @@ class DBUtil {
 
     // CommunityUser
     fun getCommunityUserByUser(email: String): List<CommunityUser> {
+        // 이메일로 가입된 커뮤니티 전체 조회
         val realm: Realm = Realm.getDefaultInstance()
         realm.beginTransaction()
         val list = realm.where(CommunityUser::class.java)
@@ -126,6 +127,7 @@ class DBUtil {
     }
 
     fun getCommunityUserByUserAndTitle(email: String, title: String): CommunityUser? {
+        // 이메일로 가입된 특정 커뮤니티 조회
         val realm: Realm = Realm.getDefaultInstance()
         realm.beginTransaction()
         val item = realm.where(CommunityUser::class.java)
@@ -135,6 +137,22 @@ class DBUtil {
         var result: CommunityUser? = null
         if (item != null) {
             result = realm.copyFromRealm(item)
+        }
+
+        realm.commitTransaction()
+        return result
+    }
+
+    fun getCommunityUserByTitle(title: String): List<CommunityUser> {
+        // 이메일로 가입된 커뮤니티 전체 조회
+        val realm: Realm = Realm.getDefaultInstance()
+        realm.beginTransaction()
+        val list = realm.where(CommunityUser::class.java)
+            .equalTo(CommunityUser.FIELD_COMMUNITY_TITLE, title).findAll()
+
+        var result: List<CommunityUser> = listOf()
+        if (list != null) {
+            result = realm.copyFromRealm(list)
         }
 
         realm.commitTransaction()

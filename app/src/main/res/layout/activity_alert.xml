@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+    <data>
+        <variable
+            name="viewModel"
+            type="com.github.scott.gcm.data.viewmodel.AlertViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -10,6 +15,7 @@
             android:id="@+id/button_alert_back"
             android:layout_width="25dp"
             android:layout_height="25dp"
+            android:onClick="@{()->viewModel.onClickBack()}"
             android:layout_margin="20dp"
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
