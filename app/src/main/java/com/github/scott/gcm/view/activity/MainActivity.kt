@@ -16,8 +16,8 @@ import com.github.scott.gcm.R
 import com.github.scott.gcm.data.viewmodel.MainViewModel
 import com.github.scott.gcm.databinding.ActivityMainBinding
 import com.github.scott.gcm.view.adapter.MainPagerAdapter
-import com.github.scott.gcm.view.fragment.LikeFragment
 import com.github.scott.gcm.view.fragment.MainFragment
+import com.github.scott.gcm.view.fragment.MyCommunityFragment
 import com.github.scott.gcm.view.fragment.ProfileFragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel.loggedinEmail = CommonUtil.getUser(this)
 
         viewModel.moveRequest.observe(this, Observer {
             val intent = Intent(this, ManageRequestActivity::class.java)
@@ -97,7 +98,7 @@ class MainActivity : AppCompatActivity() {
                 supportFragmentManager,
                 listOf(
                     mainFragment,
-                    LikeFragment(),
+                    MyCommunityFragment(),
                     ProfileFragment()
                 )
             )

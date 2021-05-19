@@ -34,8 +34,8 @@ class ManageRequestActivity : AppCompatActivity() {
                     adapter.deleteItem(position)
 
                     val msg =
-                        if (isAccepted) resources.getString(R.string.managerequest_dialog_message_accept)
-                        else resources.getString(R.string.managerequest_dialog_message_deny)
+                        if (isAccepted) resources.getString(R.string.managerequest_result_message_accept)
+                        else resources.getString(R.string.managerequest_result_message_deny)
                     Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
                 },
                 negativeTask = {})

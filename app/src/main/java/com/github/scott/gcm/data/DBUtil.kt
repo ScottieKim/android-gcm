@@ -97,6 +97,21 @@ class DBUtil {
         return result
     }
 
+    // CommunityUser
+    fun getCommunityUserByUser(email: String): List<CommunityUser> {
+        val realm: Realm = Realm.getDefaultInstance()
+        realm.beginTransaction()
+        val list = realm.where(CommunityUser::class.java).equalTo(CommunityUser.FIELD_COMMUNITY_USER_EMAIL, email).findAll()
+
+        var result: List<CommunityUser> = listOf()
+        if (list != null) {
+            result = realm.copyFromRealm(list)
+        }
+
+        realm.commitTransaction()
+        return result
+    }
+
     fun getCommunityByType(type: String): List<Community> {
         val realm: Realm = Realm.getDefaultInstance()
         realm.beginTransaction()

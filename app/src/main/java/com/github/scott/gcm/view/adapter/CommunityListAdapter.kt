@@ -64,8 +64,7 @@ class CommunityListAdapter(var list: List<Community>) :
         this.list = list
         notifyDataSetChanged()
     }
-
-
+    
     companion object {
         @JvmStatic
         @BindingAdapter("app:imgUrl")

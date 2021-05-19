@@ -1,54 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical">
+    <data>
 
-    <TextView
-        style="@style/TitleStyle"
-        android:layout_width="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_height="wrap_content"
-        android:text="@string/like_title" />
+        <import type="android.view.View" />
 
-    <FrameLayout
+        <variable
+            name="viewModel"
+            type="com.github.scott.gcm.data.viewmodel.MainViewModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
+            style="@style/TitleStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical">
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/mycommunity_title" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_marginLeft="80dp"
-                android:layout_marginRight="80dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/empty_icon" />
-
-            <TextView
-                style="@style/TitleStyle"
-                android:layout_gravity="center"
-                android:textColor="@color/blue"
-                android:layout_width="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_height="wrap_content"
-                android:text="@string/like_empty" />
-        </LinearLayout>
-
-
-        <androidx.recyclerview.widget.RecyclerView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:visibility="gone"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent">
 
-    </FrameLayout>
-</LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:visibility="@{viewModel.isEmpty ? View.VISIBLE : View.GONE, default=gone}">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80dp"
+                    android:layout_marginRight="80dp"
+                    android:src="@drawable/empty_icon" />
+
+                <TextView
+                    style="@style/TitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/like_empty"
+                    android:textColor="@color/blue" />
+            </LinearLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_mycommunity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:visibility="visible"
+                app:communityList="@{viewModel.getAllMyCommunity()}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        </FrameLayout>
+    </LinearLayout>
 
 </layout>

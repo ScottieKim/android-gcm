@@ -63,6 +63,9 @@
     <!-- Manage Request -->
     <string name="managerequest_dialog_message_accept">Are you sure to accept?</string>
     <string name="managerequest_dialog_message_deny">Are you sure to deny?</string>
+    <string name="managerequest_result_message_accept">Accepted</string>
+    <string name="managerequest_result_message_deny">Denied</string>
+
 
     <!-- Notification -->
     <string name="notification_content_format">You got an invitation from %s.\nWould you like to accept the invitation?</string>
@@ -70,6 +73,7 @@
     <!-- Search -->
     <string name="search_title">Search</string>
 
-
+    <!-- My Community -->
+    <string name="mycommunity_title">My Community</string>
 
 </resources>

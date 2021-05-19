@@ -10,6 +10,7 @@ class SearchViewModel : ViewModel() {
     private val dbUtil = DBUtil()
     var type = ""
     var date = ""
+    var isEmpty = true
 
     fun getCommunityByType(): MutableList<Community> {
         val result = mutableListOf<Community>()
@@ -21,7 +22,6 @@ class SearchViewModel : ViewModel() {
             val endDate = dateFormat.parse(item.endDate)
             val compareDate = dateFormat.parse(date)
 
-
             if (startDate != null && endDate != null && compareDate != null) {
                 if (startDate < compareDate && compareDate < endDate) {
                     result.add(item)
@@ -29,10 +29,13 @@ class SearchViewModel : ViewModel() {
             }
         }
 
+        isEmpty = result.isEmpty()
+
         return result
     }
 
     fun onClickBack() {
 
     }
+
 }

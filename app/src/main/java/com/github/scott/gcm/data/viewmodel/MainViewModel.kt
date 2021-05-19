@@ -5,10 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.scott.gcm.data.DBUtil
 import com.github.scott.gcm.data.model.Community
+import com.github.scott.gcm.data.model.CommunityUser
 import com.github.scott.gcm.data.model.User
 
 class MainViewModel : ViewModel() {
     var text = "text"
+    var loggedinEmail = ""
+
     private val dbUtil = DBUtil()
     var moveCreate = CalledData()
     var moveAlert = CalledData()
@@ -20,6 +23,8 @@ class MainViewModel : ViewModel() {
     var searchDate = ""
     var searchType = ""
 
+    var isEmpty = true
+
     fun loggingAllUser() {
         val list = dbUtil.getAllEntities<User>()
         for (item in list) {
@@ -30,6 +35,20 @@ class MainViewModel : ViewModel() {
     fun getAllCommunity(): List<Community> {
         return dbUtil.getAllEntities()
     }
+
+    fun getAllMyCommunity(): List<Community> {
+        val list = dbUtil.getCommunityUserByUser(loggedinEmail)
+        val result = mutableListOf<Community>()
+        for (item in list) {
+            // 1. item.communityTitle로 community 검색
+            // 2. result.add(검색 community)
+            result.add(dbUtil.getCommunityByTitle(item.communityTitle))
+        }
+
+        isEmpty = result.isEmpty()
+        return result
+    }
+
 
     fun insertTestCommunity() {
         // Insert Test

@@ -3,9 +3,12 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.github.scott.gcm.data.viewmodel.SearchViewModel" />
+
     </data>
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,49 +16,88 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <LinearLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/button_main_alert"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="start"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@android:color/transparent"
+                android:onClick="@{()->viewModel.onClickBack()}"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                style="@style/TitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="25dp"
+                android:text="@string/search_title" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="vertical">
+                android:layout_gravity="center"
+                android:minHeight="500dp">
 
-                <ImageButton
-                    android:id="@+id/button_main_alert"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="start"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@android:color/transparent"
-                    android:onClick="@{()->viewModel.onClickBack()}"
-                    android:scaleType="fitCenter"
-                    android:src="@mipmap/ic_launcher" />
 
-                <TextView
-                    style="@style/TitleStyle"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="25dp"
-                    android:text="@string/search_title" />
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.isEmpty ? View.VISIBLE : View.GONE, default=gone}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="80dp"
+                        android:layout_marginRight="80dp"
+                        android:src="@drawable/empty_icon" />
+
+                    <TextView
+                        style="@style/TitleStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+
+                        android:text="@string/like_empty"
+                        android:textColor="@color/blue" />
+                </LinearLayout>
+
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerview_main_new"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="20dp"
                     android:orientation="vertical"
                     app:communityList="@{viewModel.getCommunityByType()}"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0" />
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </FrameLayout>
+
+        </LinearLayout>
 
     </ScrollView>
 </layout>
