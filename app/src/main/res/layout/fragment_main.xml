@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -8,8 +9,7 @@
             type="com.github.scott.gcm.data.viewmodel.MainViewModel" />
     </data>
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -53,34 +53,6 @@
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <LinearLayout
-                        android:id="@+id/linearlayout_main_search"
-                        android:layout_width="match_parent"
-                        android:layout_height="55dp"
-                        android:layout_margin="20dp"
-                        android:background="@drawable/button_grey"
-                        android:orientation="horizontal"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textview_main_search">
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_margin="12dp"
-                            android:src="@android:drawable/ic_menu_search"
-                            app:tint="@color/black" />
-
-                        <TextView
-                            style="@style/ContentStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:text="where do you want to meet?"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/linearlayout_main_calendar"
@@ -88,10 +60,11 @@
                         android:layout_height="55dp"
                         android:layout_margin="20dp"
                         android:background="@drawable/button_grey"
+                        android:onClick="@{()->viewModel.onClickShowSearchDate()}"
                         android:orientation="horizontal"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toLeftOf="@+id/textview_main_search_type"
-                        app:layout_constraintTop_toBottomOf="@+id/linearlayout_main_search">
+                        app:layout_constraintTop_toBottomOf="@+id/textview_main_search">
 
                         <ImageView
                             android:layout_width="20dp"
@@ -101,6 +74,7 @@
                             android:src="@drawable/calendar_icon" />
 
                         <TextView
+                            android:id="@+id/textview_main_search_date"
                             style="@style/TitleStyle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -112,22 +86,38 @@
 
                     </LinearLayout>
 
-                    <TextView
+
+                    <FrameLayout
                         android:id="@+id/textview_main_search_type"
-                        style="@style/TitleStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="55dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="20dp"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
                         android:background="@drawable/button_grey"
-                        android:gravity="center"
-                        android:padding="12dp"
-                        android:text="type of workout"
-                        android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@+id/linearlayout_main_calendar"
+                        app:layout_constraintHorizontal_bias="1"
                         app:layout_constraintLeft_toRightOf="@+id/linearlayout_main_calendar"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/linearlayout_main_calendar" />
+                        app:layout_constraintTop_toTopOf="@+id/linearlayout_main_calendar">
+
+                        <Spinner
+                            android:id="@+id/spinner_create_communitytype"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:dropDownVerticalOffset="52dp" />
+
+                        <TextView
+                            android:id="@+id/textview_create_communitytype"
+                            style="@style/TitleStyle"
+                            android:layout_width="110dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="1dp"
+                            android:background="@color/white"
+                            android:gravity="center"
+                            android:text="Type of workout"
+                            android:textSize="@dimen/textsize_13" />
+
+                    </FrameLayout>
+
 
                     <TextView
                         android:id="@+id/textview_main_search_desc"
@@ -151,9 +141,11 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginBottom="20dp"
                         android:background="@drawable/button_blue"
+                        android:onClick="@{()->viewModel.onClickSearch()}"
                         android:text="search"
                         android:textColor="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textview_main_search_desc" />

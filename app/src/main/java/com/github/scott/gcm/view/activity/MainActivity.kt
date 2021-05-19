@@ -1,9 +1,11 @@
 package com.github.scott.gcm.view.activity
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -22,12 +24,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
+import java.text.DateFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
     private lateinit var mainFragment: MainFragment
     private val CREATE_COMMUNITY = 10002
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +75,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         })
+        viewModel.showSearchDate.observe(this, Observer { showDatePicker() })
+        viewModel.moveSearch.observe(this, Observer {
+            val intent = Intent(this, SearchActivity::class.java).apply {
+                putExtra("date", viewModel.searchDate)
+                putExtra("type", viewModel.searchType)
+            }
+            startActivity(intent)
+        })
 
         binding.viewModel = viewModel
 
@@ -78,7 +91,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun initPager() {
         mainFragment = MainFragment()
-
 
         viewpager_main.adapter =
             MainPagerAdapter(
@@ -95,7 +107,7 @@ class MainActivity : AppCompatActivity() {
 
         // Tab 설정
         tab_main.getTabAt(0)?.setIcon(android.R.drawable.star_big_off)?.setText("Main")
-        tab_main.getTabAt(1)?.setIcon(android.R.drawable.star_big_off)?.setText("Like")
+        tab_main.getTabAt(1)?.setIcon(android.R.drawable.star_big_off)?.setText("MyCommunity")
         tab_main.getTabAt(2)?.setIcon(android.R.drawable.star_big_off)?.setText("Profile")
 
         tab_main.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -123,5 +135,33 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == CREATE_COMMUNITY) {
             mainFragment.refreshList()
         }
+    }
+
+    private fun showDatePicker() {
+        // today
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+        // select
+        val dialog = DatePickerDialog(
+            this,
+            R.style.DialogStyle,
+            DatePickerDialog.OnDateSetListener { _, selectedYear, selectedMonth, selectDay ->
+                val calendar = Calendar.getInstance().apply {
+                    timeInMillis = 0
+                }
+                calendar.set(selectedYear, selectedMonth, selectDay)
+
+                val selected = calendar.time
+                val dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.UK)
+                viewModel.searchDate = dateFormat.format(selected)
+                Log.e("DATE", viewModel.searchDate)
+
+                mainFragment.setSearchDate(viewModel.searchDate)
+            }, year, month, day
+        )
+        dialog.show()
     }
 }

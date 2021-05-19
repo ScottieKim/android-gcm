@@ -1,5 +1,6 @@
 package com.github.scott.gcm.view.adapter
 
+import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.github.scott.gcm.data.model.Community
 import com.github.scott.gcm.databinding.ItemCommunityBinding
 import com.github.scott.gcm.view.activity.DetailActivity
 import com.github.scott.gcm.view.activity.MainActivity
+import com.github.scott.gcm.view.activity.SearchActivity
 import kotlinx.android.synthetic.main.item_community.view.*
 
 class CommunityListAdapter(var list: List<Community>) :
@@ -39,10 +41,21 @@ class CommunityListAdapter(var list: List<Community>) :
         fun bind(item: Community) {
             binding.community = item
             binding.constraintlayoutCommunityContainer.setOnClickListener {
-                val intent =
-                    Intent(binding.root.context as MainActivity, DetailActivity::class.java)
+                var activity: Activity? = null
+                var intent: Intent? = null
+
+                when (binding.root.context) {
+                    is MainActivity -> {
+                        activity = binding.root.context as MainActivity
+                    }
+                    is SearchActivity -> {
+                        activity = binding.root.context as SearchActivity
+                    }
+                }
+
+                intent = Intent(activity, DetailActivity::class.java)
                 intent.putExtra("title", item.title)
-                (binding.root.context as MainActivity).startActivity(intent)
+                activity?.startActivity(intent)
             }
         }
     }

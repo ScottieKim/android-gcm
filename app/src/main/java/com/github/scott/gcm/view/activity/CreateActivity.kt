@@ -68,24 +68,22 @@ class CreateActivity : AppCompatActivity() {
         val list = listOf("Basketball", "Golf", "Soccer")
         binding.spinnerCreateCommunitytype.adapter =
             ArrayAdapter(this, R.layout.item_spinner, R.id.textview_spinner, list)
-        binding.spinnerCreateCommunitytype.onItemSelectedListener =
-            object : AdapterView.OnItemSelectedListener {
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                    Log.e("TTT", "")
+
+        binding.spinnerCreateCommunitytype.addOnLayoutChangeListener(View.OnLayoutChangeListener { view, i, i1, i2, i3, i4, i5, i6, i7 ->
+            val position: Int = binding.spinnerCreateCommunitytype.selectedItemPosition
+            if (isFirst) {
+                isFirst = false
+            } else {
+                if (isFirst) {
+                    isFirst = false
+                } else {
+                    viewModel.setCommunityType(list[position])
+                    binding.textviewCreateCommunitytype.text = list[position]
                 }
 
-                override fun onItemSelected(
-                    parent: AdapterView<*>?, view: View?, position: Int, id: Long
-                ) {
-                    if (isFirst) {
-                        isFirst = false
-                    } else {
-                        viewModel.setCommunityType(list[position])
-                        binding.textviewCreateCommunitytype.text = list[position]
-                    }
-
-                }
             }
+        })
+        
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

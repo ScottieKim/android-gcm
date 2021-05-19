@@ -13,7 +13,12 @@ class MainViewModel : ViewModel() {
     var moveCreate = CalledData()
     var moveAlert = CalledData()
     var moveRequest = CalledData()
+    var moveSearch = CalledData()
+    var showSearchDate = CalledData()
     var logout = CalledData()
+
+    var searchDate = ""
+    var searchType = ""
 
     fun loggingAllUser() {
         val list = dbUtil.getAllEntities<User>()
@@ -72,6 +77,14 @@ class MainViewModel : ViewModel() {
 
     fun onClickRequest() {
         moveRequest.call()
+    }
+
+    fun onClickShowSearchDate() {
+        showSearchDate.call()
+    }
+
+    fun onClickSearch() {
+        moveSearch.call()
     }
 
     class CalledData : MutableLiveData<Boolean>() {

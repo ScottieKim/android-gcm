@@ -36,6 +36,7 @@
         <activity android:name=".view.activity.MapActivity" />
         <activity android:name=".view.activity.AlertActivity" />
         <activity android:name=".view.activity.ManageRequestActivity" />
+        <activity android:name=".view.activity.SearchActivity" />
 
         <meta-data
             android:name="com.google.android.gms.version"

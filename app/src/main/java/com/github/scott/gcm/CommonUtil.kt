@@ -1,9 +1,13 @@
 package com.github.scott.gcm
 
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import java.text.DateFormat
+import java.util.*
 
 object CommonUtil {
     val SP_USER = "user"
@@ -45,7 +49,4 @@ object CommonUtil {
         builder.show()
     }
 
-    interface DialogListener {
-        fun positiveTask()
-    }
 }

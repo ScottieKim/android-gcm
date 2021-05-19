@@ -97,6 +97,20 @@ class DBUtil {
         return result
     }
 
+    fun getCommunityByType(type: String): List<Community> {
+        val realm: Realm = Realm.getDefaultInstance()
+        realm.beginTransaction()
+        val list = realm.where(Community::class.java).equalTo("type", type).findAll()
+
+        var result: List<Community> = listOf()
+        if (list != null) {
+            result = realm.copyFromRealm(list)
+        }
+
+        realm.commitTransaction()
+        return result
+    }
+
     // Join Request
     fun getAllJoinRequest(community: Community?, loggedinEmail: String): List<JoinRequest> {
         val realm: Realm = Realm.getDefaultInstance()
