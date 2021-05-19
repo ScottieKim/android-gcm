@@ -27,12 +27,13 @@ class AlertViewModel(application: Application) : AndroidViewModel(application) {
     var notificationList: MutableList<Invitation> = mutableListOf()
     var clickedNotification: Invitation? = null
 
+
     fun onClickSearch() {
         list = dbUtil.getUserListById(keyword)?.toMutableList() ?: mutableListOf()
         setUserList.value = list
     }
 
-    fun onClickBack(){
+    fun onClickBack() {
         clickBack.call()
     }
 
@@ -84,10 +85,10 @@ class AlertViewModel(application: Application) : AndroidViewModel(application) {
         }
 
         // Log
-        Log.e("Join Request 1 ", " ")
-        for (item in dbUtil.getAllJoinRequest(community, hostEmail)) {
-            Log.e(">>> ", "${item.communityTitle}   ${item.guestEmail}")
-        }
+//        Log.e("Join Request 1 ", " ")
+//        for (item in dbUtil.getAllJoinRequest(community, hostEmail)) {
+//            Log.e(">>> ", "${item.communityTitle}   ${item.guestEmail}")
+//        }
 
         if (community != null) {
             if (isAccepted) {
@@ -100,10 +101,10 @@ class AlertViewModel(application: Application) : AndroidViewModel(application) {
             }
 
             // Log
-            Log.e("Community User 2 ", " ")
-            for (item in dbUtil.getAllEntities<CommunityUser>()) {
-                Log.e(">>> ", "${item.communityTitle}   ${item.email}")
-            }
+//            Log.e("Community User 2 ", " ")
+//            for (item in dbUtil.getAllEntities<CommunityUser>()) {
+//                Log.e(">>> ", "${item.communityTitle}   ${item.email}")
+//            }
 
 
             // 2. delete JoinRequest
@@ -118,16 +119,16 @@ class AlertViewModel(application: Application) : AndroidViewModel(application) {
 
 
             // Log
-            Log.e("Join Request 3 ", " ")
-            for (item in dbUtil.getAllJoinRequest(community, hostEmail)) {
-                Log.e(">>> ", "${item.communityTitle}   ${item.guestEmail}")
-            }
-
-            // Log
-            Log.e("Invitation3 ", " ")
-            for (item in dbUtil.getAllInvitationByUser(user.email)) {
-                Log.e(">>> ", "${item.communityTitle}   ${item.guestEmail}")
-            }
+//            Log.e("Join Request 3 ", " ")
+//            for (item in dbUtil.getAllJoinRequest(community, hostEmail)) {
+//                Log.e(">>> ", "${item.communityTitle}   ${item.guestEmail}")
+//            }
+//
+//            // Log
+//            Log.e("Invitation3 ", " ")
+//            for (item in dbUtil.getAllInvitationByUser(user.email)) {
+//                Log.e(">>> ", "${item.communityTitle}   ${item.guestEmail}")
+//            }
 
         }
     }
@@ -150,6 +151,7 @@ class AlertViewModel(application: Application) : AndroidViewModel(application) {
     fun getInvitationList(): List<Invitation> {
         val context = getApplication<Application>().applicationContext
         val email = CommonUtil.getUser(context)
-        return dbUtil.getAllInvitationByUser(email).toMutableList()
+        val list = dbUtil.getAllInvitationByUser(email).toMutableList()
+        return list
     }
 }

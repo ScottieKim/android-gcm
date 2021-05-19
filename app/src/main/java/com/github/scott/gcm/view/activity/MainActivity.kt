@@ -120,9 +120,9 @@ class MainActivity : AppCompatActivity() {
         tab_main.setupWithViewPager(viewpager_main)
 
         // Tab 설정
-        tab_main.getTabAt(0)?.setIcon(android.R.drawable.star_big_off)?.setText("Main")
-        tab_main.getTabAt(1)?.setIcon(android.R.drawable.star_big_off)?.setText("MyCommunity")
-        tab_main.getTabAt(2)?.setIcon(android.R.drawable.star_big_off)?.setText("Profile")
+        tab_main.getTabAt(0)?.setIcon(R.drawable.main_icon)?.setText("Main")
+        tab_main.getTabAt(1)?.setIcon(R.drawable.mycommunity_icon)?.setText("MyCommunity")
+        tab_main.getTabAt(2)?.setIcon(R.drawable.profile_icon)?.setText("Profile")
 
         tab_main.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(p0: TabLayout.Tab?) {
@@ -130,7 +130,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
-                val tabIconColor = Color.parseColor("#c8c8c8")
+                val tabIconColor = Color.parseColor("#000000")
                 tab?.getIcon()?.setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN)
             }
 

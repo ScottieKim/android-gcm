@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
+
         <variable
             name="viewModel"
             type="com.github.scott.gcm.data.viewmodel.AlertViewModel" />
@@ -9,15 +11,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <ImageButton
             android:id="@+id/button_alert_back"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:onClick="@{()->viewModel.onClickBack()}"
             android:layout_margin="20dp"
             android:background="@android:color/transparent"
+            android:onClick="@{()->viewModel.onClickBack()}"
             android:scaleType="fitCenter"
             android:src="@drawable/back_icon"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -39,9 +42,9 @@
             android:id="@+id/framelayout_alert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:background="@drawable/tab_bg"
             android:layout_margin="20dp"
+            android:background="@drawable/tab_bg"
+            android:clipToPadding="false"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_alert_title">
@@ -51,7 +54,7 @@
                 android:layout_width="0dp"
                 android:layout_height="38dp"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/gradient_bg"/>
+                android:background="@drawable/gradient_bg" />
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_alert"
@@ -60,12 +63,12 @@
 
                 android:layout_gravity="center_vertical"
                 app:tabGravity="fill"
-                app:tabMode="fixed"
                 app:tabIndicator="@null"
-                app:tabTextColor="@color/darkgrey_3"
-                app:tabSelectedTextColor="@color/blue"
                 app:tabIndicatorColor="@null"
-                app:tabRippleColor="@null"/>
+                app:tabMode="fixed"
+                app:tabRippleColor="@null"
+                app:tabSelectedTextColor="@color/blue"
+                app:tabTextColor="@color/darkgrey_3" />
         </FrameLayout>
 
         <androidx.viewpager.widget.ViewPager

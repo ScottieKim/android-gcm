@@ -28,12 +28,13 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="end"
+                    android:tint="@color/blue"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="20dp"
                     android:background="@android:color/transparent"
                     android:onClick="@{()->viewModel.onClickAlert()}"
                     android:scaleType="fitCenter"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@drawable/alert_icon" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"

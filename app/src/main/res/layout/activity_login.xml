@@ -53,10 +53,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/selector_edittext"
+                android:padding="12dp"
                 android:ems="10"
                 android:hint="@string/login_email_hint"
                 android:inputType="textPersonName"
-                android:padding="12dp"
                 android:text="@={viewModel.email}" />
 
             <TextView
@@ -73,7 +73,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/selector_edittext"
                 android:ems="10"
-                android:hint="@string/login_email_hint"
+                android:hint="@string/login_password_hint"
                 android:inputType="textPassword"
                 android:padding="12dp"
                 android:text="@={viewModel.password}" />
@@ -131,12 +131,6 @@
                 android:onClick="@{()->viewModel.onClickJoin()}"
                 android:text="Sign up" />
 
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Forgot password?" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

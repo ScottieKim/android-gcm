@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout >
 
     <data>
 
@@ -23,13 +23,14 @@
 
         <ImageView
             android:id="@+id/imageview_notification_bell"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/alert_icon"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/blue" />
 
         <TextView
             android:id="@+id/textview_notification_title"
@@ -55,19 +56,6 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_notification_title" />
 
-        <ImageButton
-            android:id="@+id/button_notification_delete"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@color/fui_transparent"
-            android:scaleType="fitCenter"
-            android:src="@mipmap/ic_launcher"
-            app:layout_constraintHorizontal_bias="1"
-            app:layout_constraintLeft_toRightOf="@+id/textview_notification_title"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/button_searchuser_accept"
@@ -79,7 +67,7 @@
             android:text="@string/common_accept"
             android:textColor="@color/white"
             android:textSize="@dimen/textsize_13"
-            android:onClick="@{()->viewModel.onClickManageRequest(position, true)}"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/button_searchuser_deny"
             app:layout_constraintTop_toBottomOf="@+id/textview_notification_content" />
@@ -92,7 +80,6 @@
             android:layout_marginEnd="20dp"
             android:background="@drawable/button_blue"
             android:text="@string/common_deny"
-            android:onClick="@{()->viewModel.onClickManageRequest(position, true)}"
             android:textColor="@color/white"
             android:textSize="@dimen/textsize_13"
             app:layout_constraintBottom_toBottomOf="parent"
