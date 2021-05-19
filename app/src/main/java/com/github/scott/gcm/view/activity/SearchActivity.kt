@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.github.scott.gcm.R
@@ -24,6 +25,7 @@ class SearchActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
         viewModel.date = intent.getStringExtra("date") ?: ""
         viewModel.type = intent.getStringExtra("type") ?: ""
+        viewModel.clickBack.observe(this, Observer { finish() })
         binding.viewModel = viewModel
     }
 

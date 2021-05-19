@@ -2,6 +2,7 @@ package com.github.scott.gcm.view.activity
 
 import android.app.Activity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.BindingAdapter
@@ -30,7 +31,7 @@ class ManageRequestActivity : AppCompatActivity() {
                 positiveTask = {
                     val adapter = (binding.recyclerviewManage.adapter as UserListAdapter)
                     val item = adapter.list[position]
-                    viewModel.manageRequest(item, isAccepted, true )
+                    viewModel.manageRequest(item, isAccepted, true)
                     adapter.deleteItem(position)
 
                     val msg =
@@ -51,6 +52,9 @@ class ManageRequestActivity : AppCompatActivity() {
             showRequestDialog(position, false)
         })
         binding.viewModel = viewModel
+        binding.buttonManageBack.setOnClickListener { finish() }
+        binding.linearlayoutManageEmpty.visibility =
+            if (viewModel.getUserList().isEmpty()) View.VISIBLE else View.GONE
 
     }
 

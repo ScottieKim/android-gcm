@@ -11,6 +11,7 @@ class SearchViewModel : ViewModel() {
     var type = ""
     var date = ""
     var isEmpty = true
+    var clickBack = MainViewModel.CalledData()
 
     fun getCommunityByType(): MutableList<Community> {
         val result = mutableListOf<Community>()
@@ -35,7 +36,7 @@ class SearchViewModel : ViewModel() {
     }
 
     fun onClickBack() {
-
+        clickBack.call()
     }
 
 }
